@@ -20,7 +20,7 @@ public enum Status {
 
     }
 
-    Status(String avaliar) {
+    public setStatus(String avaliar) {
         this.avaliar = avaliar;
     }
 
