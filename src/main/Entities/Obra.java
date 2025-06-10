@@ -1,9 +1,10 @@
-package Entities;
+package main.Entities;
 
-import java.util.UUID;
+
 
 public class Obra {
-    private UUID id;
+
+    private long id;
     private String titulo;
     private String genero;
     private int ano;
@@ -22,7 +23,7 @@ public class Obra {
     }
 
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -48,7 +49,7 @@ public class Obra {
         else this.autor = "DEFAULT";  
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 

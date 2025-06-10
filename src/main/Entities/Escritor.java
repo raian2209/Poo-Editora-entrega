@@ -1,23 +1,24 @@
-package Entities;
+package main.Entities;
 
 import java.util.UUID;
 
-public class Avaliador {
-    private UUID id;
+public class Escritor {
+    private long id;
     private String nome;
     private String cpf;
     private String endereco;
 
-    public Avaliador(String nome, String cpf, String endereco) {
+    public Escritor(String nome, String cpf, String endereco) {
         setNome(nome);
         setCpf(cpf);
         setEndereco(endereco);
     }
 
-    public Avaliador() {
+    public Escritor() {
     }
 
-    public UUID getId() {
+
+    public long getId() {
         return id;
     }
 
@@ -33,30 +34,28 @@ public class Avaliador {
         return endereco;
     }
 
-
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
     public void setNome(String nome) {
-        if(!(nome.isBlank())) this.nome = nome;
-        else this.nome = "DEFAULT";
-       
+         if(!(nome.isBlank())) this.nome = nome; 
+        else this.nome = "DEFAULT";  
     }
 
     public void setCpf(String cpf) {
-        if(!(cpf.isBlank())) this.cpf = cpf; 
-        else this.cpf = "DEFAULT";   
+         if(!(cpf.isBlank())) this.cpf = cpf; 
+        else this.cpf = "DEFAULT";  
     }
 
     public void setEndereco(String endereco) {
-        if(!(endereco.isBlank())) this.endereco = endereco;
-        else this.endereco = "DEFAULT";
-        
+         if(!(endereco.isBlank())) this.endereco = endereco; 
+        else this.endereco = "DEFAULT";  
     }
 
- 
-    public Avaliador cadastrarAvaliador(Avaliador avaliador){
+
+
+    public Escritor cadastrarEscritor(Escritor escritor){
 
         System.out.println("Tentando conexão do banco");
 
@@ -69,10 +68,10 @@ public class Avaliador {
         System.out.println("EXECUTANDO");
 
 
-        return avaliador;
+        return escritor;
     }
 
-    public Avaliador alterarAvaliador(Avaliador avaliador){
+    public Escritor alterarEscritor(Escritor escritor){
 
         System.out.println("Tentando conexão do banco");
 
@@ -85,10 +84,10 @@ public class Avaliador {
         System.out.println("EXECUTANDO");
 
 
-        return avaliador;
+        return escritor;
     }
 
-    public Avaliador exluirAvaliador(Avaliador avaliador){
+    public Escritor exluirEscritor(Escritor escritor){
 
         System.out.println("Tentando conexão do banco");
 
@@ -101,13 +100,13 @@ public class Avaliador {
         System.out.println("EXECUTANDO");
 
 
-        return avaliador;
+        return escritor;
     }
 
 
 
     // ESTA VOID MAS O RETORNO É ResultSet
-    public void buscarTodosAvaliador(){
+    public void buscarTodosEscritor(){
 
         System.out.println("Tentando conexão do banco");
 
@@ -123,7 +122,7 @@ public class Avaliador {
 
     }
 
-    // Retorno é ResultSet(BANCO) ou List<Avaliador>
+    // Retorno é ResultSet(BANCO) ou List<Escritor>
     public void buscarPorNome(String string){
 
         System.out.println("Tentando conexão do banco");
@@ -141,7 +140,7 @@ public class Avaliador {
     }
 
 
-    // Retorno é ResultSet(BANCO) ou List<Avaliador>
+    // Retorno é ResultSet(BANCO) ou List<Escritor>
     public void buscarPorObra(String string){
 
         System.out.println("Tentando conexão do banco");
@@ -155,7 +154,6 @@ public class Avaliador {
         System.out.println("EXECUTANDO");
 
     }
-
 
 
 }

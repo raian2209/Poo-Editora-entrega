@@ -1,4 +1,4 @@
-package Entities;
+package main.Entities;
 
 public class Dono {
     private String nome;

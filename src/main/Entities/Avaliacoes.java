@@ -1,11 +1,12 @@
-package Entities;
+package main.Entities;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.UUID;
+
 
 public class Avaliacoes {
-    private UUID id;
+
+    private long id;
     private Avaliador avaliadorObra;
     private Obra obraAvaliar;
     private LocalDateTime dataAvaliacao;
@@ -33,7 +34,7 @@ public class Avaliacoes {
     }
 
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -64,7 +65,7 @@ public class Avaliacoes {
     }
 
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
