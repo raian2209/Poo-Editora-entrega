@@ -3,6 +3,7 @@ package main.Util;
 import jakarta.persistence.*;
 
 public class JPAUtil {
+
     private static final String PERSISTENCE_UNIT_NAME = "seuPU"; // Substitua por um nome significativo
     private static final EntityManagerFactory EMF = buildEntityManagerFactory();
 

@@ -1,13 +1,20 @@
 package main.Entities;
 
 
+import jakarta.persistence.*;
 
+@Entity
 public class Obra {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column
     private String titulo;
+    @Column
     private String genero;
+    @Column
     private int ano;
+    @Column
     private String autor;
 
     // O GENERO SERIA MELHOR COMO ENUM ?
