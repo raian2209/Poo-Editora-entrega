@@ -124,92 +124,25 @@ public class Obra {
         return obra;
     }
 
-
-
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarTodasObra(){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarTodasObra(){
+        return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarPorEscritor(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarPorEscritor(String string){
+        return new ArrayList<>();
     }
 
 
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarPorTitulo(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarPorTitulo(String string){
+        return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarPorStatus(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarPorStatus(String string){
+        return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarPorAno(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarPorAno(String string){
+        return new ArrayList<>();
     }
 
 
