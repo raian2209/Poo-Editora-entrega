@@ -144,75 +144,27 @@ public class Avaliacoes {
 
 
     // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public void buscarTodasAvaliacoes(){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<avaliacoes> buscarTodasAvaliacoes(){
+        return new ArrayList<>();
     }
 
  
 
 
     // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public void buscarPorAvaliador(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<avaliacoes> buscarPorAvaliador(String string){
+        return new ArrayList<>();
     }
 
        // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public void buscarPorObra(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<avaliacoes> buscarPorObra(String string){
+        return new ArrayList<>();
     }
 
     // Retorno é ResultSet(BANCO) ou List<avaliacoess>
     // Fazer por Mes , Ano , Dia 
-    public void buscarPorData(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<avaliacoes> buscarPorData(String string){
+        return new ArrayList<>();
     }
 
     // Retorno é ResultSet(BANCO) ou List<avaliacoess>
