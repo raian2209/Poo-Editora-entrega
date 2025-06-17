@@ -18,7 +18,8 @@ public class Obra {
     private String autor;
 
     // O GENERO SERIA MELHOR COMO ENUM ?
-//
+    
+    // construtor
     public Obra(String titulo, String genero, int ano, String autor) {
         setTitulo(titulo);
         setGenero(genero);
@@ -29,7 +30,7 @@ public class Obra {
     public Obra() {
     }
 
-
+    // sets e gets
     public void setId(long id) {
         this.id = id;
     }
@@ -76,6 +77,7 @@ public class Obra {
         return autor;
     }
 
+    // metodos
     public Obra cadastrarObra(Obra obra){
 
         System.out.println("Tentando conexão do banco");
@@ -124,92 +126,25 @@ public class Obra {
         return obra;
     }
 
-
-
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarTodasObra(){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarTodasObra(){
+        return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarPorEscritor(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarPorEscritor(String string){
+        return new ArrayList<>();
     }
 
 
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarPorTitulo(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarPorTitulo(String string){
+        return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarPorStatus(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarPorStatus(String string){
+        return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<Obras>
-    public void buscarPorAno(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Obra> buscarPorAno(String string){
+        return new ArrayList<>();
     }
 
 

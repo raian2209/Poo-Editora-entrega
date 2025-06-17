@@ -13,6 +13,8 @@ public class Avaliacoes {
 // LEMBRAR NA HORA DO TRATAMENTO DE INPUT NA VIEW QUE AS OPÇÕES SÃO PADRAO / ACEITO / REJEITADO
     private Status status;
 
+
+// construtores
 // CONSTRUTOR PARA A CRIAÇÃO DO OBJETO
     public Avaliacoes(Avaliador avaliadorObra, Obra obraAvaliar) {
     setAvaliadorObra(avaliadorObra);
@@ -33,7 +35,7 @@ public class Avaliacoes {
     public Avaliacoes() {
     }
 
-
+// sets e gets
     public void setId(long id) {
         this.id = id;
     }
@@ -85,6 +87,7 @@ public class Avaliacoes {
         return status.getAvaliar();
     }
 
+// metodos
     public LocalDateTime comverterData(String dataStr){
         if (dataStr == null || dataStr.isBlank()) {
             return LocalDateTime.now();
@@ -141,95 +144,26 @@ public class Avaliacoes {
         return avaliacoes;
     }
 
-
-
-    // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public void buscarTodasAvaliacoes(){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Avaliacoes> buscarTodasAvaliacoes(){
+       return new ArrayList<>();
     }
 
- 
-
-
-    // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public void buscarPorAvaliador(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Avaliacoes> buscarPorAvaliador(String string){
+        return new ArrayList<>();
     }
 
-       // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public void buscarPorObra(String string){
 
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Avaliacoes> buscarPorObra(String string){
+        return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<avaliacoess>
     // Fazer por Mes , Ano , Dia 
-    public void buscarPorData(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Avaliacoes> buscarPorData(String string){
+        return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public void buscarPorStatus(String string){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-
+    public List<Avaliacoes> buscarPorStatus(String string){
+        return new ArrayList<>();
     }
 
 
