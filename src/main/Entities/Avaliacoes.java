@@ -141,34 +141,25 @@ public class Avaliacoes {
         return avaliacoes;
     }
 
+    public List<Avaliacoes> buscarTodasAvaliacoes(){
+       return new ArrayList<>();
+    }
 
-
-    // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public List<avaliacoes> buscarTodasAvaliacoes(){
+    public List<Avaliacoes> buscarPorAvaliador(String string){
         return new ArrayList<>();
     }
 
- 
 
-
-    // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public List<avaliacoes> buscarPorAvaliador(String string){
+    public List<Avaliacoes> buscarPorObra(String string){
         return new ArrayList<>();
     }
 
-       // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public List<avaliacoes> buscarPorObra(String string){
-        return new ArrayList<>();
-    }
-
-    // Retorno é ResultSet(BANCO) ou List<avaliacoess>
     // Fazer por Mes , Ano , Dia 
-    public List<avaliacoes> buscarPorData(String string){
+    public List<Avaliacoes> buscarPorData(String string){
         return new ArrayList<>();
     }
 
-    // Retorno é ResultSet(BANCO) ou List<avaliacoess>
-    public List<avaliacoes> buscarPorStatus(String string){
+    public List<Avaliacoes> buscarPorStatus(String string){
         return new ArrayList<>();
     }
 
