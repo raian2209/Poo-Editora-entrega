@@ -8,12 +8,11 @@ public class Escritor extends Conta {
     
     // construtores
     public Escritor(String nome, String cpf, String endereco) {
-        setNome(nome);
-        setCpf(cpf);
-        setEndereco(endereco);
+        super(nome, cpf, endereco);
     }
 
     public Escritor() {
+        super();
     }
 
     // metodos
