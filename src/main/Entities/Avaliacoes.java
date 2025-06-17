@@ -13,6 +13,8 @@ public class Avaliacoes {
 // LEMBRAR NA HORA DO TRATAMENTO DE INPUT NA VIEW QUE AS OPÇÕES SÃO PADRAO / ACEITO / REJEITADO
     private Status status;
 
+
+// construtores
 // CONSTRUTOR PARA A CRIAÇÃO DO OBJETO
     public Avaliacoes(Avaliador avaliadorObra, Obra obraAvaliar) {
     setAvaliadorObra(avaliadorObra);
@@ -33,7 +35,7 @@ public class Avaliacoes {
     public Avaliacoes() {
     }
 
-
+// sets e gets
     public void setId(long id) {
         this.id = id;
     }
@@ -85,6 +87,7 @@ public class Avaliacoes {
         return status.getAvaliar();
     }
 
+// metodos
     public LocalDateTime comverterData(String dataStr){
         if (dataStr == null || dataStr.isBlank()) {
             return LocalDateTime.now();
