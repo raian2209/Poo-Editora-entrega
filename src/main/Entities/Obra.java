@@ -18,7 +18,8 @@ public class Obra {
     private String autor;
 
     // O GENERO SERIA MELHOR COMO ENUM ?
-//
+    
+    // construtor
     public Obra(String titulo, String genero, int ano, String autor) {
         setTitulo(titulo);
         setGenero(genero);
@@ -29,7 +30,7 @@ public class Obra {
     public Obra() {
     }
 
-
+    // sets e gets
     public void setId(long id) {
         this.id = id;
     }
@@ -76,6 +77,7 @@ public class Obra {
         return autor;
     }
 
+    // metodos
     public Obra cadastrarObra(Obra obra){
 
         System.out.println("Tentando conexão do banco");
