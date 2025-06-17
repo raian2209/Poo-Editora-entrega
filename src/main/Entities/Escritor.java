@@ -5,6 +5,7 @@ import java.util.UUID;
 public class Escritor extends Conta {
     private List<Obra> obras;
 
+    
     // construtores
     public Escritor(String nome, String cpf, String endereco) {
         setNome(nome);
