@@ -55,7 +55,7 @@ public class Conta {
     
     //construtores
     
-    public Conta(Stirng nome, String cpf, String endereco) {
+    public Conta(String nome, String cpf, String endereco) {
     	setNome(nome);
     	setCpf(cpf);
     	setEndereco(endereco);
