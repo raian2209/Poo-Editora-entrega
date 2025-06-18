@@ -1,9 +1,24 @@
 package main.Entities;
 
+import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.UUID;
 
+@Entity
+@DiscriminatorValue("AVALIADOR")
 public class Avaliador extends Conta {
 
+    @OneToMany(mappedBy = "avaliadorObra", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Avaliacoes> avaliacao;
+
+    public List<Avaliacoes> getAvaliar() {
+        return avaliacao;
+    }
+
+    public void setAvaliar(List<Avaliacoes> avaliar) {
+        this.avaliacao = avaliar;
+    }
 
     // construtor
     public Avaliador(String nome, String cpf, String endereco) {
@@ -14,29 +29,6 @@ public class Avaliador extends Conta {
         super();
     }
 
-    // métodos da classe
-    public Avaliador cadastrarAvaliador(Avaliador avaliador) {
-    	return avaliador;
-    }
 
-    public Avaliador alterarAvaliador(Avaliador avaliador) {
-    	return avaliador;
-    }
-
-    public Avaliador excluirAvaliador(Avaliador avaliador) {
-    	return avaliador;
-    }
-
-    public List<Avaliador> buscarTodosAvaliador() {
-    	return new ArrayList<>();
-    }
-    
-    public List<Avaliador> buscarPorNome(String nome) {
-    	return new ArrayList<>();
-    }
-
-    public List<Avaliador> buscarPorObra(String obra){
-    	return new ArrayList<>();
-    }
 
 }

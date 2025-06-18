@@ -1,8 +1,12 @@
 package main.Entities;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
 import java.util.List;
 import java.util.ArrayList;
 
-
+@Entity
+@DiscriminatorValue("DONO")
 public class Dono extends Conta{
 	
 	//construtor
@@ -15,29 +19,5 @@ public class Dono extends Conta{
     	super();
     };
     
-  //métodos da classe
-    
-    public Dono cadastrarDono(Dono dono) {
-    	return dono;
-    }
-    
-    public Dono alterarDono(Dono dono) {
-    	return dono;
-    }
-    
-    public Dono excluirDono(Dono dono) {
-    	return dono;
-    }
-    
-    public List<Dono> buscarTodosDono() {
-    	return new ArrayList<>();
-    }
-    
-    public List<Dono> buscarPorNome(String nome) {
-    	return new ArrayList<>();
-    }
 
-    public List<Dono> buscarPorObra(String obra){
-    	return new ArrayList<>();
-    }
 }

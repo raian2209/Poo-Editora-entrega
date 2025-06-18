@@ -1,16 +1,28 @@
 package main.Entities;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
+@Entity
 public class Avaliacoes {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "avaliador_id")
     private Avaliador avaliadorObra;
+
+    @ManyToOne
+    @JoinColumn(name="Obra_id")
     private Obra obraAvaliar;
+
+    @Column
     private LocalDateTime dataAvaliacao;
 // LEMBRAR NA HORA DO TRATAMENTO DE INPUT NA VIEW QUE AS OPÇÕES SÃO PADRAO / ACEITO / REJEITADO
+    @Enumerated(EnumType.STRING)
     private Status status;
 
 
@@ -94,76 +106,6 @@ public class Avaliacoes {
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         return LocalDateTime.parse(dataStr, formatter);
-    }
-
-    public Avaliacoes cadastrarAvaliacoes(Avaliacoes avaliacoes){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return avaliacoes;
-    }
-
-    public Avaliacoes alterarAvaliacoes(Avaliacoes avaliacoes){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return avaliacoes;
-    }
-
-    public Avaliacoes exluirAvaliacoes(Avaliacoes avaliacoes){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return avaliacoes;
-    }
-
-    public List<Avaliacoes> buscarTodasAvaliacoes(){
-       return new ArrayList<>();
-    }
-
-    public List<Avaliacoes> buscarPorAvaliador(String string){
-        return new ArrayList<>();
-    }
-
-
-    public List<Avaliacoes> buscarPorObra(String string){
-        return new ArrayList<>();
-    }
-
-    // Fazer por Mes , Ano , Dia 
-    public List<Avaliacoes> buscarPorData(String string){
-        return new ArrayList<>();
-    }
-
-    public List<Avaliacoes> buscarPorStatus(String string){
-        return new ArrayList<>();
     }
 
 

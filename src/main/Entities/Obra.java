@@ -3,6 +3,8 @@ package main.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Obra {
     @Id
@@ -14,13 +16,15 @@ public class Obra {
     private String genero;
     @Column
     private int ano;
-    @Column
-    private String autor;
+
+    @ManyToOne
+    @JoinColumn(name="autor_id")
+    private Escritor autor;
 
     // O GENERO SERIA MELHOR COMO ENUM ?
     
     // construtor
-    public Obra(String titulo, String genero, int ano, String autor) {
+    public Obra(String titulo, String genero, int ano, Escritor autor) {
         setTitulo(titulo);
         setGenero(genero);
         setAno(ano);
@@ -52,9 +56,8 @@ public class Obra {
         this.ano = ano;
     }
 
-    public void setAutor(String autor) {
-         if(!(autor.isBlank())) this.autor = autor; 
-        else this.autor = "DEFAULT";  
+    public void setAutor(Escritor autor) {
+         if(!(autor == null)) this.autor = autor;
     }
 
     public long getId() {
@@ -73,78 +76,8 @@ public class Obra {
         return ano;
     }
 
-    public String getAutor() {
+    public Escritor getAutor() {
         return autor;
-    }
-
-    // metodos
-    public Obra cadastrarObra(Obra obra){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return obra;
-    }
-
-    public Obra alterarObra(Obra obra){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return obra;
-    }
-
-    public Obra exluirObra(Obra obra){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return obra;
-    }
-
-    public List<Obra> buscarTodasObra(){
-        return new ArrayList<>();
-    }
-
-    public List<Obra> buscarPorEscritor(String string){
-        return new ArrayList<>();
-    }
-
-
-    public List<Obra> buscarPorTitulo(String string){
-        return new ArrayList<>();
-    }
-
-    public List<Obra> buscarPorStatus(String string){
-        return new ArrayList<>();
-    }
-
-    public List<Obra> buscarPorAno(String string){
-        return new ArrayList<>();
     }
 
 

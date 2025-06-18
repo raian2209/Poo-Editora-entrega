@@ -1,8 +1,15 @@
 package main.Entities;
 
+import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.UUID;
 
+@Entity
+@DiscriminatorValue("ESCRITOR")
 public class Escritor extends Conta {
+
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Obra> obras;
 
     
@@ -15,66 +22,6 @@ public class Escritor extends Conta {
         super();
     }
 
-    // metodos
-    public Escritor cadastrarEscritor(Escritor escritor){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return escritor;
-    }
-
-    public Escritor alterarEscritor(Escritor escritor){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return escritor;
-    }
-
-    public Escritor exluirEscritor(Escritor escritor){
-
-        System.out.println("Tentando conexão do banco");
-
-        System.out.println("Montando query ");
-
-        System.out.println("preparando statment ");
-
-        System.out.println("Inserindo valores na query");
-
-        System.out.println("EXECUTANDO");
-
-
-        return escritor;
-    }
-
-    public List<Escritor> buscarTodosEscritor(){
-        return new ArrayList<>();
-    }
-
-    public List<Escritor> buscarPorNome(String string){
-        return new ArrayList<>();
-    }
-
-    public List<Escritor> buscarPorObra(String string){
-        return new ArrayList<>();
-    }
 
 
 }

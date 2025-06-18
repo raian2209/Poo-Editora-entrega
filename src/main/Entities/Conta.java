@@ -4,6 +4,8 @@ package main.Entities;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public class Conta {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
