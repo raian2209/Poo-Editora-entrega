@@ -31,4 +31,9 @@ public  class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Aval
     public List<Avaliacoes> BuscarTodos() {
         return List.of();
     }
+
+    @Override
+    public void deletar(Avaliacoes entidade) {
+
+    }
 }

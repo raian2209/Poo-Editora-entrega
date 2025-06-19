@@ -39,4 +39,9 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra>{
     public List<Obra> BuscarTodos() {
         return List.of();
     }
+
+    @Override
+    public void deletar(Obra entidade) {
+
+    }
 }

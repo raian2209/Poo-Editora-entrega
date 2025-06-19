@@ -5,7 +5,7 @@ import main.Util.JPAUtil;
 
 public abstract class AbstractDAO {
 
-    protected final EntityManager em;
+    protected  EntityManager em;
 
     public AbstractDAO(){
         this.em = JPAUtil.getEntityManager();

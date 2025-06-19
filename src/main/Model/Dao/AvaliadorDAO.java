@@ -9,11 +9,11 @@ public class AvaliadorDAO extends AbstractDAO implements UserGenericInterDAO<Ava
 
 
     @Override
-    public void removerPorCPF(String cpf) {
-
+    public Avaliador buscarPorCPF(String cpf) {
+        return null;
     }
 
-    @Override
+
     public List<Avaliador> buscarPorObra(Obra obra) {
         return List.of();
     }
@@ -36,5 +36,10 @@ public class AvaliadorDAO extends AbstractDAO implements UserGenericInterDAO<Ava
     @Override
     public List<Avaliador> BuscarTodos() {
         return List.of();
+    }
+
+    @Override
+    public void deletar(Avaliador entidade) {
+
     }
 }
