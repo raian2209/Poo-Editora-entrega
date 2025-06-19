@@ -108,5 +108,14 @@ public class Avaliacoes {
         return LocalDateTime.parse(dataStr, formatter);
     }
 
-
+    @Override
+    public String toString() {
+        return "Avaliacoes{" +
+                "id=" + id +
+                ", avaliadorObra=" + avaliadorObra +
+                ", obraAvaliar=" + obraAvaliar +
+                ", dataAvaliacao=" + dataAvaliacao +
+                ", status=" + status +
+                '}';
+    }
 }

@@ -12,7 +12,7 @@ public class Conta {
 	private long id;
 	@Column
 	private String nome;
-	@Column
+	@Column(unique = true, nullable = false)
 	private String cpf;
 	@Column
 	private String endereco;
@@ -65,5 +65,15 @@ public class Conta {
     
     public Conta() {
     	
-    }      
+    }
+
+    @Override
+    public String toString() {
+        return "Conta{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", endereco='" + endereco + '\'' +
+                '}';
+    }
 }

@@ -80,5 +80,14 @@ public class Obra {
         return autor;
     }
 
-
+    @Override
+    public String toString() {
+        return "Obra{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", genero='" + genero + '\'' +
+                ", ano=" + ano +
+                ", autor=" + autor +
+                '}';
+    }
 }

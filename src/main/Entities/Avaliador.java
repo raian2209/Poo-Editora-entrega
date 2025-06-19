@@ -29,6 +29,10 @@ public class Avaliador extends Conta {
         super();
     }
 
-
-
+    @Override
+    public String toString() {
+        return super.toString()+"Avaliador{" +
+                "avaliacao=" + avaliacao +
+                '}';
+    }
 }
