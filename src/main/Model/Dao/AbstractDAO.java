@@ -8,7 +8,7 @@ public abstract class AbstractDAO {
     protected  EntityManager em;
 
     public AbstractDAO(){
-        this.em = JPAUtil.getEntityManager();
+        this.em =  JPAUtil.getEntityManager();
     }
 
 }

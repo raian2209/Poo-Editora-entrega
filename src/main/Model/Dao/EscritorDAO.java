@@ -41,6 +41,7 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
 
     @Override
     public void atualizar(Escritor escritor) {
+        em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
             em.merge(escritor);
@@ -62,13 +63,20 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
 
     @Override
     public void deletar(Escritor entidade) {
+        em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            if (entidade != null) {
-                em.remove(entidade); // remove da base
+
+            Escritor escritor = em.find(Escritor.class, entidade.getId());
+
+            if (escritor != null) {
+                em.remove(escritor); // remove da base
             }
             em.getTransaction().commit();
-        } finally {
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.err.println("Erro ao deletar Escritor: " + e.getMessage());
+        }finally {
             em.close();
         }
     }

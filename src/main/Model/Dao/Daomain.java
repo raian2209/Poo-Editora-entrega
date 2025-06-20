@@ -22,7 +22,8 @@ public class Daomain {
     public static void removerEscritores(){
 
         EscritorDAO escritorDAO = new EscritorDAO();
-        escritorDAO.deletar(escritorDAO.buscarPorCPF("111111111"));
+        Escritor escritor = escritorDAO.buscarPorCPF("111111111");
+        escritorDAO.deletar(escritor);
 
     }
 
@@ -68,26 +69,26 @@ public class Daomain {
         System.out.println("Todas as obras:");
         List<Obra> todas = obraDAO.BuscarTodos();
         for (Obra o : todas) {
-            System.out.println(o);
+            System.out.println(o.getTitulo());
         }
 
         System.out.println("Obras com título contendo 'Obra':");
         List<Obra> porTitulo = obraDAO.buscarPorTitulo("Obra");
         for (Obra o : porTitulo) {
-            System.out.println(o);
+            System.out.println(o.getTitulo());
         }
 
         System.out.println("Obras do ano 2005:");
         List<Obra> porAno = obraDAO.buscarPorAno(2005);
         for (Obra o : porAno) {
-            System.out.println(o);
+            System.out.println(o.getAno());
         }
 
         Escritor escritor = escritorDAO.buscarPorCPF("999999999");
         System.out.println("Obras do escritor:");
         List<Obra> porEscritor = obraDAO.buscarPorEscritor(escritor);
         for (Obra o : porEscritor) {
-            System.out.println(o);
+            System.out.println(o.getTitulo());
         }
     }
 
@@ -118,7 +119,9 @@ public class Daomain {
         removerEscritores();
         buscarEscritores();
         atualizarEscritores();
-        System.out.println("--------------------------------------------");
+
+        // ----------------------------------------------
+
         criarObras();
         buscarObras();
         atualizarObra();
