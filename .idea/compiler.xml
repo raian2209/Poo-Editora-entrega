@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="POO-Editora-entrega" />
+        <module name="Poo-Editora-entrega" />
       </profile>
     </annotationProcessing>
   </component>
