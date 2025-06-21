@@ -1,9 +1,8 @@
 package main.Entities;
 
 import jakarta.persistence.*;
-
+import org.hibernate.Hibernate; //Importação
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @DiscriminatorValue("ESCRITOR")
@@ -29,11 +28,12 @@ public class Escritor extends Conta {
         super();
     }
 
-
+    // Alteração no to String
     @Override
     public String toString() {
-        return super.toString() +"Escritor{" +
-                "obras=" + obras +
+        boolean isInitialized = Hibernate.isInitialized(this.obras);
+        return super.toString() + " Escritor{" +
+                "obras=" + (isInitialized ? this.obras.size() + " obras" : "[coleção não inicializada]") +
                 '}';
     }
 }
