@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import main.Entities.Avaliacoes;
 import main.Entities.Avaliador;
+import main.Entities.Status;
 import main.Util.JPAUtil;
 
 import java.time.LocalDateTime;
@@ -103,6 +104,42 @@ public class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Avali
             if (em != null) {
                 em.close();
             }
+        }
+    }
+
+    @Override
+    public Avaliacoes buscarPorId(Avaliacoes avaliacao) {
+         em = JPAUtil.getEntityManager();
+        try {
+            return em.find(Avaliacoes.class, avaliacao.getId());
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Avaliacoes> buscarAposDataComStatus(LocalDateTime dataLimite) {
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Avaliacoes> query = em.createQuery(
+                    "SELECT a FROM Avaliacoes a WHERE a.dataAvaliacao > :data AND a.status <> :status", Avaliacoes.class);
+            query.setParameter("data", dataLimite);
+            query.setParameter("status", Status.PADRAO); // Enum
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+
+    public List<Avaliacoes> buscarAposData(LocalDateTime dataLimite) {
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Avaliacoes> query = em.createQuery(
+                    "SELECT a FROM Avaliacoes a WHERE a.dataAvaliacao > :data", Avaliacoes.class);
+            query.setParameter("data", dataLimite);
+            return query.getResultList();
+        } finally {
+            em.close();
         }
     }
 

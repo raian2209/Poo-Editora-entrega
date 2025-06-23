@@ -2,6 +2,7 @@ package main.Model.Dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import main.Entities.Avaliacoes;
 import main.Entities.Escritor;
 import main.Entities.Obra;
 import main.Util.JPAUtil;
@@ -149,4 +150,17 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
             }
         }
     }
+
+
+
+    public Avaliacoes buscarPorId(Obra obra) {
+        em = JPAUtil.getEntityManager();
+        try {
+            return em.find(Avaliacoes.class, obra.getId());
+        } finally {
+            em.close();
+        }
+    }
+
+
 }

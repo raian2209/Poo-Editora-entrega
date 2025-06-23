@@ -13,13 +13,17 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
 
     @Override
     public Escritor buscarPorCPF(String cpf) {
+        em = JPAUtil.getEntityManager();
+        try {
             TypedQuery<Escritor> query = em.createQuery(
                     "SELECT e FROM Escritor e WHERE e.cpf = :cpf", Escritor.class);
             query.setParameter("cpf", cpf);
 
             List<Escritor> resultado = query.setMaxResults(1).getResultList();
             return resultado.isEmpty() ? null : resultado.get(0);
-
+        } finally {
+            em.close();
+        }
     }
 
     @Override
@@ -56,9 +60,14 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
 
     @Override
     public List<Escritor> BuscarTodos() {
-        TypedQuery<Escritor> query = em.createQuery(
-                "SELECT e FROM Escritor e", Escritor.class);
-        return query.getResultList();
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Escritor> query = em.createQuery(
+                    "SELECT e FROM Escritor e", Escritor.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
     }
 
     @Override
@@ -67,10 +76,8 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
         try {
             em.getTransaction().begin();
 
-            Escritor escritor = em.find(Escritor.class, entidade.getId());
-
-            if (escritor != null) {
-                em.remove(escritor); // remove da base
+            if (entidade != null) {
+                em.remove(entidade); // remove da base
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -83,18 +90,28 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
 
 
     public Escritor buscarPorObra(Obra obra) {
-        TypedQuery<Escritor> query = em.createQuery(
-                "SELECT o.autor FROM Obra o WHERE o.id = :idObra", Escritor.class);
-        query.setParameter("idObra", 1L);
-        return query.getSingleResult();
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Escritor> query = em.createQuery(
+                    "SELECT o.autor FROM Obra o WHERE o.id = :idObra", Escritor.class);
+            query.setParameter("idObra", 1L);
+            return query.getSingleResult();
+        } finally {
+            em.close();
+        }
     }
 
 
     @Override
     public List<Escritor> buscarPorNome(String nome) {
-        TypedQuery<Escritor> query = em.createQuery(
-                "SELECT e FROM Escritor e WHERE e.nome = :nome", Escritor.class);
-        query.setParameter("nome", nome);
-        return  query.getResultList();
-    }
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Escritor> query = em.createQuery(
+                    "SELECT e FROM Escritor e WHERE e.nome = :nome", Escritor.class);
+            query.setParameter("nome", nome);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+        }
 }
