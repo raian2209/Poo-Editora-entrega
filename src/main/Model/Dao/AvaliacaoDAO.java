@@ -56,6 +56,7 @@ public class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Avali
         }
     }
 
+    // Deleção pelo ID, pq fica mais fácil de entender o que está acontecendo
     @Override
     public void deletar(Avaliacoes entidade) {
         em = JPAUtil.getEntityManager();

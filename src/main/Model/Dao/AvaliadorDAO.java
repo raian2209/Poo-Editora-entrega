@@ -48,10 +48,10 @@ public class AvaliadorDAO extends AbstractDAO implements UserGenericInterDAO<Ava
         em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            if (!em.contains(avaliador)) {
-                avaliador = em.merge(avaliador);
+            Avaliador a = em.find(Avaliador.class, avaliador.getId());
+            if (a != null) {
+                em.remove(a);
             }
-            em.remove(avaliador);
             em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
@@ -62,6 +62,7 @@ public class AvaliadorDAO extends AbstractDAO implements UserGenericInterDAO<Ava
             em.close();
         }
     }
+
 
     @Override
     public Avaliador buscarPorCPF(String cpf) {
