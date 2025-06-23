@@ -59,11 +59,9 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
         em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            if (entidade != null) {
-                if (!em.contains(entidade)) {
-                    entidade = em.merge(entidade);
-                }
-                em.remove(entidade);
+            Obra obra = em.find(Obra.class, entidade.getId());
+            if (obra != null) {
+                em.remove(obra);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -75,6 +73,7 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
             em.close();
         }
     }
+
 
     @Override
     public void removerPorTitulo(String titulo) {
