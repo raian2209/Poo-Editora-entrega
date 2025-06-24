@@ -60,9 +60,6 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
         try {
             em.getTransaction().begin();
             if (entidade != null) {
-                if (!em.contains(entidade)) {
-                    entidade = em.merge(entidade);
-                }
                 em.remove(entidade);
             }
             em.getTransaction().commit();

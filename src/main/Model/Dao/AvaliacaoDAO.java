@@ -61,10 +61,10 @@ public class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Avali
         em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            Avaliacoes a = em.find(Avaliacoes.class, entidade.getId());
-            if (a != null) {
-                em.remove(a);
-            }
+
+
+                em.remove(entidade);
+
             em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
