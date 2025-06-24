@@ -34,6 +34,9 @@ public class Daomain {
         for (Escritor e : escritorDAO.BuscarTodos()) {
             System.out.println(e.toString());
         }
+        for (Escritor e : escritorDAO.BuscarTodos()) {
+            System.out.println(e.toString());
+        }
         System.out.println(escritorDAO.buscarPorCPF("222222222"));
         System.out.println(escritorDAO.buscarPorNome("teste3"));
     }

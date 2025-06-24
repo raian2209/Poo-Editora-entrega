@@ -1,13 +1,16 @@
 package main.Model.Service;
 
 import main.Entities.Escritor;
+import main.Entities.Obra;
 import main.Model.Dao.EscritorDAO;
 
-public class EscritorService {
+import java.util.List;
+
+public class EscritorService implements UserInterService<Escritor>{
 
     private EscritorDAO escritorDAO = new EscritorDAO();
 
-    public void criarEscritor(Escritor escritor) {
+    public void salvar(Escritor escritor) {
         if (escritorDAO.buscarPorCPF(escritor.getCpf()) == null) {
             escritorDAO.salvar(escritor);
         } else {
@@ -15,7 +18,7 @@ public class EscritorService {
         }
     }
 
-    public void deletarEscritor(Escritor escritor) {
+    public void deletar(Escritor escritor) {
         if (escritorDAO.buscarPorCPF(escritor.getCpf()) == null) {
             System.out.println("Não existe um escritor com esse cpf");
         } else {
@@ -23,11 +26,25 @@ public class EscritorService {
         }
     }
 
-    public void atualisarEscritor(Escritor escritor) {
+    public void atualisar(Escritor escritor) {
         if (escritorDAO.buscarPorCPF(escritor.getCpf()) == null) {
             System.out.println("Não existe um escritor com esse cpf");
         } else {
-            escritorDAO.salvar(escritor);
+            escritorDAO.atualizar(escritor);
         }
+    }
+
+    public List<Escritor> BuscarTodos(){
+        return escritorDAO.BuscarTodos();
+    }
+
+    @Override
+    public Escritor buscarPorCPF(String cpf) {
+        return escritorDAO.buscarPorCPF(cpf);
+    }
+
+    @Override
+    public List<Escritor> buscarPorNome(String nome) {
+        return escritorDAO.buscarPorNome(nome);
     }
 }

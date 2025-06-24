@@ -11,5 +11,9 @@ public interface AvaliacaoInterDAO<T> extends GenericInterDAO<T>{
 
     public abstract List<T> buscarPorAvaliador(Avaliador avaliador);
     public abstract List<T> buscarPorData(LocalDateTime data);
-    public abstract  T buscarPorId(Avaliacoes avaliacao);
+    public abstract  T buscarPorId(Long ID);
+    public List<T> buscarPorAvaliadorComStatusAvaliado(Avaliador avaliador);
+    public List<T> buscarAposDataComStatusAvaliado(LocalDateTime dataLimite);
+    public List<T> buscarAposDataComStatusNaoAvaliado(LocalDateTime dataLimite);
+
 }

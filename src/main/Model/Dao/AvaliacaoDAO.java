@@ -90,20 +90,46 @@ public class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Avali
     }
 
     @Override
-    public Avaliacoes buscarPorId(Avaliacoes avaliacao) {
+    public Avaliacoes buscarPorId(Long ID) {
         em = JPAUtil.getEntityManager();
         try {
-            return em.find(Avaliacoes.class, avaliacao.getId());
+            return em.find(Avaliacoes.class, ID);
         } finally {
             em.close();
         }
     }
 
-    public List<Avaliacoes> buscarAposDataComStatus(LocalDateTime dataLimite) {
+    public List<Avaliacoes> buscarAposDataComStatusAvaliado(LocalDateTime dataLimite) {
         em = JPAUtil.getEntityManager();
         try {
             TypedQuery<Avaliacoes> query = em.createQuery(
                     "SELECT a FROM Avaliacoes a WHERE a.dataAvaliacao > :data AND a.status <> :status", Avaliacoes.class);
+            query.setParameter("data", dataLimite);
+            query.setParameter("status", Status.PADRAO);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Avaliacoes> buscarPorAvaliadorComStatusAvaliado(Avaliador avaliador) {
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Avaliacoes> query = em.createQuery(
+                    "SELECT a FROM Avaliacoes a WHERE a.avaliadorObra = :avaliadorObra AND a.status <> :status", Avaliacoes.class);
+            query.setParameter("avaliadorObra", avaliador);
+            query.setParameter("status", Status.PADRAO);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Avaliacoes> buscarAposDataComStatusNaoAvaliado(LocalDateTime dataLimite) {
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Avaliacoes> query = em.createQuery(
+                    "SELECT a FROM Avaliacoes a WHERE a.dataAvaliacao > :data AND a.status = :status", Avaliacoes.class);
             query.setParameter("data", dataLimite);
             query.setParameter("status", Status.PADRAO);
             return query.getResultList();

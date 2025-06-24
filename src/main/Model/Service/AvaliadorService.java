@@ -1,13 +1,16 @@
 package main.Model.Service;
 
 import main.Entities.Avaliador;
+import main.Entities.Obra;
 import main.Model.Dao.AvaliadorDAO;
 
-public class AvaliadorService {
+import java.util.List;
+
+public class AvaliadorService implements UserInterService<Avaliador>{
 
     private AvaliadorDAO AvaliadorDAO = new AvaliadorDAO();
 
-    public void  criarAvaliador(Avaliador avaliador){
+    public void  salvar(Avaliador avaliador){
         if(AvaliadorDAO.buscarPorCPF(avaliador.getCpf())==null){
             AvaliadorDAO.salvar(avaliador);
         }else {
@@ -15,7 +18,7 @@ public class AvaliadorService {
         }
     }
 
-    public void  deletarAvaliador(Avaliador avaliador){
+    public void  deletar(Avaliador avaliador){
         if(AvaliadorDAO.buscarPorCPF(avaliador.getCpf())==null){
             System.out.println("não existe um avaliador com esse cpf");
         }else {
@@ -23,7 +26,7 @@ public class AvaliadorService {
         }
     }
 
-    public void  atualisarAvaliador(Avaliador avaliador){
+    public void  atualisar(Avaliador avaliador){
         if(AvaliadorDAO.buscarPorCPF(avaliador.getCpf())==null){
             System.out.println("não existe um avaliador com esse cpf");
         }else {
@@ -31,4 +34,17 @@ public class AvaliadorService {
         }
     }
 
+    public List<Avaliador> BuscarTodos(){
+        return AvaliadorDAO.BuscarTodos();
+    }
+
+    @Override
+    public Avaliador buscarPorCPF(String cpf) {
+        return AvaliadorDAO.buscarPorCPF(cpf);
+    }
+
+    @Override
+    public List<Avaliador> buscarPorNome(String nome) {
+        return AvaliadorDAO.buscarPorNome(nome);
+    }
 }
