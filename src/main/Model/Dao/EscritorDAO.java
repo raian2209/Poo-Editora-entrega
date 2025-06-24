@@ -75,8 +75,10 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
         em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-
-            if (entidade != null && em.contains(entidade))em.remove(entidade); // remove da base
+            Escritor gerenciado = em.find(Escritor.class, entidade.getId());
+                if(gerenciado !=null) {
+                    em.remove(gerenciado);// remove da base
+            }
 
             em.getTransaction().commit();
         } catch (Exception e) {

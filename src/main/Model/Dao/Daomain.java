@@ -24,9 +24,7 @@ public class Daomain {
     public static void removerEscritores() {
         EscritorDAO escritorDAO = new EscritorDAO();
         Escritor escritor = escritorDAO.buscarPorCPF("111111111");
-        if (escritor != null) {
-            escritorDAO.deletar(escritor);
-        }
+        escritorDAO.deletar(escritor);
     }
 
     public static void buscarEscritores() {

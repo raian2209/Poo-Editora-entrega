@@ -3,6 +3,7 @@ package main.Model.Dao;
 import jakarta.persistence.TypedQuery;
 import main.Entities.Avaliacoes;
 import main.Entities.Avaliador;
+import main.Entities.Escritor;
 import main.Entities.Status;
 import main.Util.JPAUtil;
 
@@ -62,9 +63,11 @@ public class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Avali
         try {
             em.getTransaction().begin();
 
+            Escritor gerenciado = em.find(Escritor.class, entidade.getId());
 
-            if (entidade != null && em.contains(entidade))em.remove(entidade);
-
+            if (entidade != null && em.contains(entidade)) {
+                em.remove(gerenciado);
+            }
             em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
