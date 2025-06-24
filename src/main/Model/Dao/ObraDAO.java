@@ -59,9 +59,8 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
         em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            if (entidade != null) {
-                em.remove(entidade);
-            }
+            if (entidade != null && em.contains(entidade))em.remove(entidade);
+
             em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {

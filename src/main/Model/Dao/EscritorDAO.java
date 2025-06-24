@@ -21,10 +21,10 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
 
             List<Escritor> resultado = query.setMaxResults(1).getResultList();
             return resultado.isEmpty() ? null : resultado.get(0);
-        } finally {
+        }finally {
             em.close();
         }
-    }
+        }
 
     @Override
     public void salvar(Escritor escritor) {
@@ -76,9 +76,8 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
         try {
             em.getTransaction().begin();
 
-            if (entidade != null) {
-                em.remove(entidade); // remove da base
-            }
+            if (entidade != null && em.contains(entidade))em.remove(entidade); // remove da base
+
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();

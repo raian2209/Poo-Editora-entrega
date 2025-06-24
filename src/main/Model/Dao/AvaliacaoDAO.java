@@ -63,7 +63,7 @@ public class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Avali
             em.getTransaction().begin();
 
 
-                em.remove(entidade);
+            if (entidade != null && em.contains(entidade))em.remove(entidade);
 
             em.getTransaction().commit();
         } catch (Exception e) {
