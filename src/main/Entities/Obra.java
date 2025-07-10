@@ -87,7 +87,7 @@ public class Obra {
                 ", titulo='" + titulo + '\'' +
                 ", genero='" + genero + '\'' +
                 ", ano=" + ano +
-                ", autor=" + autor +
+                ", autor=" + autor.getNome() +
                 '}';
     }
 }
