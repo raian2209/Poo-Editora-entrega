@@ -3,6 +3,7 @@ package View;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -120,5 +121,12 @@ public class ListViewAvaliacoesController implements Initializable {
         listViewObrasAvaliadas.setItems(obsListViewObrasAvaliadas);
 
     }
+
+    @FXML
+    void telaDeLogin(ActionEvent event) {
+        HelloAplication.telaLogin();
+    }
+
+
 
 }
