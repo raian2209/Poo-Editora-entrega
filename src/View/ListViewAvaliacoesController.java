@@ -122,11 +122,4 @@ public class ListViewAvaliacoesController implements Initializable {
 
     }
 
-    @FXML
-    void telaDeLogin(ActionEvent event) {
-        HelloAplication.telaLogin();
-    }
-
-
-
 }

@@ -10,23 +10,11 @@ import main.Entities.*;
 import java.io.IOException;
 
 public class HelloAplication extends Application {
-    //Recebe os dados do login
-    public static Conta contaLogada;
 
-    public static Stage stage;
-    public void start(Stage stage) throws Exception{
-        this.stage = stage;
-        telaRegistrarObra();
-    }
-
-    public static void telaLogin(){
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("tela-login.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 800, 600);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("obras-avaliadas.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
