@@ -12,6 +12,7 @@ module POO.Editora.entrega {
     requires com.almasb.fxgl.all;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires java.desktop;
 
     opens main.Entities to org.hibernate.orm.core;
 

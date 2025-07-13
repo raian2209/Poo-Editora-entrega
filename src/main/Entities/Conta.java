@@ -16,6 +16,8 @@ public class Conta {
 	private String cpf;
 	@Column
 	private String endereco;
+    @Column
+    private String senha;
 	
 	//getters e setters
 	
@@ -54,8 +56,17 @@ public class Conta {
         if(!(endereco.isBlank())) this.endereco = endereco;
         else this.endereco = "DEFAULT";
     }
-    
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     //construtores
+
 
 
     public Conta(long id, String nome, String cpf, String endereco) {
