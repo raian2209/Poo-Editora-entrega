@@ -114,5 +114,7 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
         } finally {
             em.close();
         }
-        }
+    }
+
+
 }
