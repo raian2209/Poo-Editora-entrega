@@ -14,7 +14,9 @@ public class Dono extends Conta{
     public Dono(String nome, String cpf, String endereco) {
         super(nome, cpf, endereco);
     }
-    
+    public Dono(String nome, String cpf, String endereco, String senha) {
+        super(nome, cpf, endereco, senha);
+    }
     public Dono() {
     	super();
     };
