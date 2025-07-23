@@ -8,7 +8,7 @@
 
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ListViewAvaliacoesController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.ListViewAvaliacoesController">
    <children>
       <ListView fx:id="listViewObrasAvaliadas" layoutX="108.0" layoutY="51.0" prefHeight="434.0" prefWidth="584.0" />
       <Button fx:id="botaoVoltar" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" text="Voltar" />

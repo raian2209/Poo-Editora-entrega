@@ -1,24 +1,23 @@
-package View;
+package main.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import main.Entities.Escritor;
 import main.Entities.Obra;
 import main.Exceptions.CPFInvalidoException;
 import main.Exceptions.CamposVaziosException;
 import main.Exceptions.NumeroInvalidoExeption;
-import main.Model.Dao.ObraDAO;
+import main.Exceptions.TituloDigitadoJaExistente;
 import main.Model.Service.EscritorService;
 import main.Model.Service.ObraService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+//----------------LEMBRAR DE TIRAR OS ESCRITORES CRIADOS PRA TESTE--------------------------------//
 public class RegistrarObraController implements Initializable {
     ObraService obraService = new  ObraService();
     EscritorService escritorService = new EscritorService();
@@ -38,20 +37,6 @@ public class RegistrarObraController implements Initializable {
     @FXML
     private TextField titulo;
 
-    @FXML
-    private Label aviso;
-
-    @FXML
-    private Label obraJaCaddastrada;
-
-    @FXML
-    private Label obraRegistrada;
-
-    @FXML
-    private Label camposVazios;
-
-    @FXML
-    private Label anoInvalido;
 
     public void initialize(URL url, ResourceBundle rb) {
         //Como não tem nenhum escritor registrado no BD, criei esses dois.
@@ -67,23 +52,6 @@ public class RegistrarObraController implements Initializable {
     void registrarObra(ActionEvent event) {
         Obra obra = new Obra();
         try {
-            //Limpar os labels de alterta
-
-            if(anoInvalido.isVisible()){
-                anoInvalido.setVisible(false);
-            }
-            if(obraRegistrada.isVisible()){
-                obraRegistrada.setVisible(false);
-            }
-            if(camposVazios.isVisible()){
-                camposVazios.setVisible(false);
-            }
-            if(aviso.isVisible()){
-                aviso.setVisible(false);
-            }
-            if(obraJaCaddastrada.isVisible()){
-                obraJaCaddastrada.setVisible(false);
-            }
             //----------------------
 
             // Verificando se não ha campos vazios. Se tiver algum vazio, dispara a exceção
@@ -95,7 +63,7 @@ public class RegistrarObraController implements Initializable {
             try{
                 obra.setAno(Integer.parseInt(ano.getText()));
             }catch(NumberFormatException e){
-                throw new NumeroInvalidoExeption("O campo ano deve receber um número inteiro.");
+                throw new NumeroInvalidoExeption("O campo ano deve receber um número inteiro!");
             }
 
             // Atribuindo valores digitados à obra criada
@@ -104,7 +72,7 @@ public class RegistrarObraController implements Initializable {
             obra.setTitulo(titulo.getText());
             // Talvez seria melhor armaenar o cpd digitado em uma String
             if(escritorService.buscarPorCPF(cpfDoAutor.getText()) == null){
-                throw new CPFInvalidoException("CPF inválido.");
+                throw new CPFInvalidoException("Digite o CPF de um autor cadastrado!");
             }
             obra.setAutor(escritorService.buscarPorCPF(cpfDoAutor.getText()));
 
@@ -112,24 +80,36 @@ public class RegistrarObraController implements Initializable {
 
             if(obraService.buscarPorTitulo(titulo.getText()).isEmpty()){
                 obraService.salvar(obra);
-                obraRegistrada.setVisible(true);
+                mostrarAlerta(Alert.AlertType.INFORMATION,"Sucesso","Obra registrada!", "Obra registrada com sucesso!");
+                titulo.clear();
+                genero.clear();
+                ano.clear();
+                cpfDoAutor.clear();
             }
             else{
-                obraJaCaddastrada.setVisible(true);
+                throw new TituloDigitadoJaExistente("Já foi cadastrada uma obra com esse título!");
             }
 
         }catch(CamposVaziosException e){
             System.out.println(e.getMessage());
-            camposVazios.setVisible(true);
+            mostrarAlerta(Alert.AlertType.ERROR, "Atenção","Campos vazios!", e.getMessage());
         }catch(NumeroInvalidoExeption e){
             System.out.println(e.getMessage());
-            anoInvalido.setVisible(true);
+            mostrarAlerta(Alert.AlertType.ERROR, "Atenção","Ano inválido!", e.getMessage());
         }catch(CPFInvalidoException e){
-            aviso.setVisible(true);
             System.out.println(e.getMessage());
+            mostrarAlerta(Alert.AlertType.ERROR, "Atenção","CPF inválido!", e.getMessage());
+        }catch(TituloDigitadoJaExistente e){
+            System.out.println(e.getMessage());
+            mostrarAlerta(Alert.AlertType.WARNING,"Atenção","Obra já existente!", e.getMessage());
         }
     }
 
-
-
+    private void mostrarAlerta(Alert.AlertType alertType,String titulo, String cabecalho, String mensagem) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(titulo);
+        alert.setHeaderText(cabecalho);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
 }

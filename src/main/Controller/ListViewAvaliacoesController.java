@@ -1,25 +1,20 @@
-package View;
+package main.Controller;
 
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import main.Model.Dao.AvaliacaoDAO;
-import main.Model.Dao.AvaliadorDAO;
 import main.Model.Service.*;
 import main.Entities.*;
 
-import javax.print.DocFlavor;
 import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 
 
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ListViewAvaliacoesController implements Initializable {

@@ -1,19 +1,22 @@
-package View;
+package main.View;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.Entities.*;
 
 
 import java.io.IOException;
 
 public class HelloAplication extends Application {
+    public static Stage stage;
+    public void start(Stage stage) throws Exception {
+        this.stage = stage;
+        telaRegistrarObra();
+    }
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("obras-avaliadas.fxml"));
+    public void telaLogin() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("/Telas/tela-login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Hello!");
         stage.setScene(scene);
@@ -21,7 +24,7 @@ public class HelloAplication extends Application {
     }
 
     public static void telaRegistrarObra(){
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("registrar-obra-interface.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("/Telas/registrar-obra-interface.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 800, 600);
@@ -34,7 +37,7 @@ public class HelloAplication extends Application {
     }
 
     public static void obrasAvaliadas() {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("obras-avaliadas.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("/Telas/obras-avaliadas.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 800, 600);
