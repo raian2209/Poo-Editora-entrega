@@ -11,19 +11,30 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 
 import main.Entities.Avaliador;
 import main.Entities.Dono;
 import main.Entities.Escritor;
+import main.Exceptions.UsuarioOuSenhaIncorretosException;
 import main.Model.Dao.ContaDAO;
 import main.Entities.Conta;
 import main.Model.Dao.EscritorDAO;
+import main.Model.Factory.ContaFactory;
 import main.Model.Service.AvaliadorService;
-import main.View.HelloAplication;
+import main.Model.Strategy.AvaliadorLoginStrategy;
+import main.Model.Strategy.DonoLoginStrategy;
+import main.Model.Strategy.EscritorLoginStrategy;
+import main.Model.Strategy.LoginSuccessStrategy;
+import main.view.HelloApplication;
 
 public class telaLoginController implements Initializable {
+
+    // O mapa de estratégias
+    private final Map<Class<? extends Conta>, LoginSuccessStrategy> strategyMap = new HashMap<>();
 
     private Escritor escritor = new Escritor("Alisson", "135.822.114-60", "Equador-RN", "1012");
     EscritorDAO escritorDAO = new EscritorDAO();
@@ -41,27 +52,41 @@ public class telaLoginController implements Initializable {
 
     private TextField cpfUsuario;
 
+    public telaLoginController() {
+        // Pré-carrega o mapa de estratégias no construtor
+        strategyMap.put(Avaliador.class, new AvaliadorLoginStrategy());
+        strategyMap.put(Escritor.class, new EscritorLoginStrategy());
+        strategyMap.put(Dono.class, new DonoLoginStrategy());
+    }
+
     @FXML
     void logar(ActionEvent event) {
         // Vai armazenar em contaAutenticada, a conta do BD que tem o CPF digitado na textfield
-        Conta contaAutenticada = contaDAO.buscarPorCPF(cpfUsuario.getText());
+        try{
+        Conta contaAutenticada = ContaFactory.createConta(contaDAO.buscarPorCPF(cpfUsuario.getText()));
+
+
         if (contaAutenticada != null && contaAutenticada.getSenha() != null && contaAutenticada.getSenha().equals(senha.getText())) {
             System.out.println("Login bem-sucedido para o usuário: " + contaAutenticada.getNome() + " (CPF: " + contaAutenticada.getCpf() + ")");
-            if(contaAutenticada instanceof Dono){
-                Dono dono = (Dono) contaAutenticada;
-            }
-            else if(contaAutenticada instanceof Avaliador){
-                Avaliador avaliador =  (Avaliador) contaAutenticada;
-                HelloAplication.obrasAvaliadas();
-            }
-            else if(contaAutenticada instanceof Escritor){
-                Escritor escritor = (Escritor) contaAutenticada;
-                HelloAplication.telaRegistrarObra();
+
+            // Pega a estratégia correta do mapa usando a classe do objeto autenticado
+            LoginSuccessStrategy strategy = strategyMap.get(contaAutenticada.getClass());
+
+            if (strategy != null) {
+                // Executa a estratégia (navegação, etc.)
+                strategy.execute();
+            } else {
+                System.out.println("Nenhuma ação definida para o tipo de conta: " + contaAutenticada.getClass().getSimpleName());
             }
 
         } else {
-            // CPF ou senha incorretos
-            System.out.println("Usuário ou senha incorretos.");
+
+            throw new UsuarioOuSenhaIncorretosException("Usuario ou Senha não reconhecido: " + cpfUsuario.getText() + " "+ senha.getText());
+
+        }
+        } catch (IllegalArgumentException e){
+            mostrarAlerta(Alert.AlertType.ERROR, "Dados Não reconhecidos", "Tipo de usuario não encontrado", "Tipo de Usuario não reconhecido");
+        } catch (UsuarioOuSenhaIncorretosException e){
             mostrarAlerta(Alert.AlertType.ERROR, "Dados incorretos", "Usuário ou senha não encontrados", "Usuário ou senha incorretos");
         }
     }

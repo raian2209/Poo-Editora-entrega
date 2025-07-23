@@ -18,7 +18,10 @@ public class Conta {
 	private String endereco;
     @Column
     private String senha;
-	
+
+    @Column(name = "tipo", insertable = false, updatable = false)
+    private String tipo;
+
 	//getters e setters
 	
 	public long getId() {
@@ -65,6 +68,9 @@ public class Conta {
         this.senha = senha;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
     //construtores
 
 

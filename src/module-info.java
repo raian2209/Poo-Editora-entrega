@@ -16,8 +16,8 @@ module POO.Editora.entrega {
 
     opens main.Entities to org.hibernate.orm.core;
 
-    opens main.View to javafx.fxml;
-    exports main.View;
+    opens main.view to javafx.fxml;
+    exports main.view;
     exports main.Controller;
     opens main.Controller to javafx.fxml;
 }
