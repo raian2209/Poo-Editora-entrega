@@ -81,6 +81,13 @@ public class Conta {
     	setCpf(cpf);
     	setEndereco(endereco);
     }
+
+    public Conta(String nome, String cpf, String endereco, String senha ) {
+        setNome(nome);
+        setCpf(cpf);
+        setEndereco(endereco);
+        setSenha(senha);
+    }
     
     public Conta() {
     	

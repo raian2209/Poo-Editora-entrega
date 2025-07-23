@@ -23,6 +23,9 @@ public class Avaliador extends Conta {
     public Avaliador(String nome, String cpf, String endereco) {
         super(nome, cpf, endereco);
     }
+    public Avaliador(String nome, String cpf, String endereco, String senha) {
+        super(nome, cpf, endereco, senha);
+    }
 
     public Avaliador() {
         super();

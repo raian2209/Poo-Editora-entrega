@@ -102,4 +102,23 @@ public class ContaDAO extends AbstractDAO implements UserGenericInterDAO<Conta> 
             em.close();
         }
     }
+
+    public Conta buscarPorSenha(String senha) {
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Conta> query = em.createQuery(
+                    "SELECT c FROM Conta c WHERE c.senha = :senha", Conta.class);
+            query.setParameter("senha", senha);
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } catch (Exception e) {
+            System.err.println("Erro inesperado ao buscar Conta por senha: " + e.getMessage());
+            return null;
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
 }
