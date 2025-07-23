@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import main.Controller.telaLoginController;
+
 
 
 import java.io.IOException;
@@ -13,7 +15,9 @@ public class HelloAplication extends Application {
     public static Stage stage;
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+
         telaLogin();
+
     }
 
     public void telaLogin() throws IOException {

@@ -3,13 +3,16 @@ package main.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import javafx.scene.control.Alert;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 import main.Entities.Avaliador;
 import main.Entities.Dono;
@@ -28,7 +31,6 @@ public class telaLoginController implements Initializable {
     AvaliadorService avaliadorService = new AvaliadorService();
     ContaDAO contaDAO = new ContaDAO();
 
-
     @FXML
     private Button botaoLogin;
 
@@ -36,6 +38,7 @@ public class telaLoginController implements Initializable {
     private PasswordField senha;
 
     @FXML
+
     private TextField cpfUsuario;
 
     @FXML
@@ -68,13 +71,16 @@ public class telaLoginController implements Initializable {
         alert.setHeaderText(cabecalho);
         alert.setContentText(mensagem);
         alert.showAndWait();
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
+
         avaliadorService.salvar(avaliador);
         escritorDAO.salvar(escritor);
     }
+
 
 
 
