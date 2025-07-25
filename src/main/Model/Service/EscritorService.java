@@ -26,7 +26,7 @@ public class EscritorService implements UserInterService<Escritor>{
         }
     }
 
-    public void atualisar(Escritor escritor) {
+    public void atualizar(Escritor escritor) {
         if (escritorDAO.buscarPorCPF(escritor.getCpf()) == null) {
             System.out.println("Não existe um escritor com esse cpf");
         } else {
