@@ -1,0 +1,76 @@
+/* Fundo geral da janela */
+.root {
+    -fx-background-color: #f0f2f5;
+}
+
+/* Painel esquerdo (branco) onde fica o formulário */
+.login-pane {
+    -fx-background-color: white;
+}
+
+/* Painel direito (colorido) para a marca */
+.branding-pane {
+    /* Cor de destaque principal. Sinta-se à vontade para mudar! */
+    -fx-background-color: #007bff;
+}
+
+/* Título "Acessar Conta" */
+.login-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Caixa que agrupa o ícone e o campo de texto */
+.input-group {
+    -fx-background-color: #f0f2f5;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 10px;
+    -fx-alignment: center-left;
+    -fx-spacing: 10px;
+}
+
+/* Ícones dentro das caixas de texto */
+.icon {
+    -fx-fill: #6c757d; /* Cinza escuro para os ícones */
+}
+
+/* Estilo dos campos de texto e senha */
+.text-field, .password-field {
+    -fx-background-color: transparent; /* Fundo transparente para se misturar ao input-group */
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #6c757d;
+}
+
+/* Estilo do botão de login */
+.login-button {
+    -fx-background-color: #007bff; /* Mesma cor de destaque */
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-pref-height: 45px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand; /* Muda o cursor para uma mãozinha ao passar por cima */
+}
+
+/* Efeito do botão ao passar o mouse */
+.login-button:hover {
+    -fx-background-color: #0056b3; /* Tom mais escuro da cor de destaque */
+}
+
+/* Estilos para o painel direito (branding) */
+.branding-logo {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.branding-slogan {
+    -fx-font-size: 16px;
+    -fx-text-fill: #e0e0e0; /* Branco com um pouco de transparência */
+}
+
+.branding-description {
+    -fx-font-size: 14px;
+    -fx-text-fill: #d0d0d0; /* Branco um pouco mais transparente */
+    -fx-line-spacing: 5px;
+}
