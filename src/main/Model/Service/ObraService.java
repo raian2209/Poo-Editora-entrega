@@ -27,7 +27,7 @@ public class ObraService implements ObraInterService<Obra>{
         }
     }
 
-    public void atualisar(Obra obra){
+    public void atualizar(Obra obra){
         if(obraDAO.buscarPorId(obra)==null){
             System.out.println("Não existe essa obra ");
         }else {
