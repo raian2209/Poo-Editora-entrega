@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane prefHeight="650.0" prefWidth="1000.0" stylesheets="@dashboard-styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.DonoGerenciarObrasController">
+
+    <left>
+        <VBox prefWidth="240.0" styleClass="sidebar">
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" styleClass="sidebar-header">
+                <padding>
+                    <Insets left="20.0" />
+                </padding>
+                <children>
+                    <Label styleClass="sidebar-logo-text" text="Editora do Sr. Paulão" />
+                </children>
+            </HBox>
+            <Button fx:id="btnObras" contentDisplay="LEFT" onAction="#handleNavegarObras" styleClass="sidebar-button" text="Obras">
+                <graphic><SVGPath content="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z" /></graphic>
+            </Button>
+            <Button fx:id="btnAvaliador" contentDisplay="LEFT" onAction="#handleNavegarAvaliador" styleClass="sidebar-button" text="Avaliador">
+                <graphic><SVGPath content="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" /></graphic>
+            </Button>
+            <Button fx:id="btnAutores" contentDisplay="LEFT" onAction="#handleNavegarAutores" styleClass="sidebar-button" text="Autores">
+                <graphic><SVGPath content="M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3L5 6.99h3V14h2V6.99h3L9 3z" /></graphic>
+            </Button>
+            <Button fx:id="btnAvaliacoes" contentDisplay="LEFT" onAction="#handleNavegarAvaliacoes" styleClass="sidebar-button" text="Avaliações">
+                <graphic><SVGPath content="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></graphic>
+            </Button>
+            <Button fx:id="btnRelatorio" contentDisplay="LEFT" onAction="#handleNavegarRelatorio" styleClass="sidebar-button" text="Relatório">
+                <graphic><SVGPath content="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0-2-.9-2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" /></graphic>
+            </Button>
+            <Region VBox.vgrow="ALWAYS" />
+            <Button fx:id="btnLogout" contentDisplay="LEFT" onAction="#handleLogout" styleClass="sidebar-button" text="Logout">
+                <graphic><SVGPath content="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" /></graphic>
+            </Button>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox styleClass="content-area">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+            <children>
+                <Label styleClass="content-title" text="Obras" />
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="action-bar">
+                    <children>
+                        <TextField prefHeight="40.0" promptText="Buscar obra por título..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#adicionarObra" styleClass="new-button" text="+ Nova Obra" />
+                    </children>
+                </HBox>
+
+                <TableView fx:id="tabelaObras" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="nomeDaObraColumn" prefWidth="400.0" text="Nome da Obra" />
+                        <TableColumn fx:id="escritorColumn" prefWidth="300.0" text="Autor" />
+                    </columns>
+                </TableView>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="table-actions">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#atualizarObra" styleClass="action-button-update" text="Atualizar" />
+                        <Button mnemonicParsing="false" onAction="#deletarObra" styleClass="action-button-delete" text="Deletar" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

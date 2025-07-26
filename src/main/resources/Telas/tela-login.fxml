@@ -51,7 +51,7 @@
                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
             </padding>
             <children>
-                <Label styleClass="branding-logo" text="Editora Sr.Paulão " />
+                <Label styleClass="branding-logo" text="Editora Sr.Paulao " />
                 <Label styleClass="branding-slogan" text="Seu portal para a melhor editora." />
             </children>
             <Label styleClass="branding-description" text="Explore um vasto catálogo de livros, dos clássicos atemporais aos lançamentos mais recentes. Encontre os melhores livros aqui." wrapText="true" />

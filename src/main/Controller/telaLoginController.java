@@ -25,6 +25,7 @@ import main.Entities.Conta;
 import main.Model.Dao.EscritorDAO;
 import main.Model.Factory.ContaFactory;
 import main.Model.Service.AvaliadorService;
+import main.Model.Service.EscritorService;
 import main.Model.Strategy.AvaliadorLoginStrategy;
 import main.Model.Strategy.DonoLoginStrategy;
 import main.Model.Strategy.EscritorLoginStrategy;
@@ -36,9 +37,9 @@ public class telaLoginController implements Initializable {
     // O mapa de estratégias
     private final Map<Class<? extends Conta>, LoginSuccessStrategy> strategyMap = new HashMap<>();
 
-    private Escritor escritor = new Escritor("Alisson", "135.822.114-60", "Equador-RN", "1012");
-    EscritorDAO escritorDAO = new EscritorDAO();
-    private Avaliador avaliador = new Avaliador("Guga", "111.111.111-11", "Mossoro rn", "10120201");
+    private Escritor escritor = new Escritor("Alisson", "135.822.114-60", "Equador-RN", "123");
+    EscritorService escritorService = new EscritorService();
+    private Avaliador avaliador = new Avaliador("Guga", "111.111.111-11", "Mossoro rn", "123");
     AvaliadorService avaliadorService = new AvaliadorService();
     ContaDAO contaDAO = new ContaDAO();
 
@@ -49,7 +50,6 @@ public class telaLoginController implements Initializable {
     private PasswordField senha;
 
     @FXML
-
     private TextField cpfUsuario;
 
     public telaLoginController() {
@@ -66,7 +66,7 @@ public class telaLoginController implements Initializable {
         Conta contaAutenticada = ContaFactory.createConta(contaDAO.buscarPorCPF(cpfUsuario.getText()));
 
 
-        if (contaAutenticada != null && contaAutenticada.getSenha() != null && contaAutenticada.getSenha().equals(senha.getText())) {
+        if (contaAutenticada.getSenha() != null && contaAutenticada.getSenha().equals(senha.getText())) {
             System.out.println("Login bem-sucedido para o usuário: " + contaAutenticada.getNome() + " (CPF: " + contaAutenticada.getCpf() + ")");
 
             // Pega a estratégia correta do mapa usando a classe do objeto autenticado
@@ -101,9 +101,19 @@ public class telaLoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
+        Dono novoDono = new Dono(
+                "Admin Principal",           // nome
+                "111.222.333-44",            // cpf
+                "Avenida Central, 123",      // endereco
+                "123"       // senha
+        );
 
+        ContaDAO contaDAO = new ContaDAO();
+        if(contaDAO.buscarPorCPF(novoDono.getCpf())==null) {
+            contaDAO.salvar(novoDono);
+        }
         avaliadorService.salvar(avaliador);
-        escritorDAO.salvar(escritor);
+        escritorService.salvar(escritor);
     }
 
 

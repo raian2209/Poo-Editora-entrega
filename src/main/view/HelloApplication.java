@@ -41,6 +41,32 @@ public class HelloApplication extends Application {
         trocarTela("/Telas/tela-login.fxml", "Tela de Login");
     }
 
+    public static void telaDono() {
+        trocarTela("/Telas/DashboardDono.fxml", "Tela do Dono");
+    }
+
+    public static void telaDonoObra() {
+        trocarTela("/Telas/DashboardDonoObra.fxml", "Tela do Dono/Avaliador");
+    }
+
+    public static void telaDonoAvaliador() {
+        trocarTela("/Telas/DashboardDonoAvaliador.fxml", "Tela do Dono/Avaliador");
+    }
+
+    public static void telaDonoAvaliacoes() {
+        trocarTela("/Telas/DashboardDonoAvaliacao.fxml", "Tela do Dono/Avaliacoes");
+    }
+    public static void telaDonoRelatorio() {
+        trocarTela("/Telas/DashboardDonoAvaliador.fxml", "Tela do Dono/Avaliador");
+    }
+
+    public static void telaAvaliadorInicial() {
+        trocarTela("/Telas/DashboardAvaliador.fxml", "Tela do Dono");
+    }
+    public static void telaEscritorInicial() {
+        trocarTela("/Telas/DashboardEscritor.fxml", "Tela do Dono");
+    }
+
     public static void telaRegistrarObra() {
         trocarTela("/Telas/registrar-obra-interface.fxml", "Registrar Obra");
     }

@@ -49,12 +49,12 @@ public class AvaliadorDAO extends AbstractDAO implements UserGenericInterDAO<Ava
         em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            Escritor gerenciado = em.find(Escritor.class, avaliador.getId());
-            if (avaliador != null && em.contains(avaliador)){
+            Avaliador gerenciado = em.find(Avaliador.class, avaliador.getId());
+
                 if(gerenciado !=null) {
                     em.remove(gerenciado);// remove da base
                 } // remove da base
-        }
+
             em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
