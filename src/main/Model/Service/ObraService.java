@@ -20,7 +20,7 @@ public class ObraService implements ObraInterService<Obra>{
     }
 
     public void deletar(Obra obra){
-        if(obraDAO.buscarPorId(obra)==null){
+        if(obraDAO.buscarPorTitulo(obra.getTitulo())==null){
             System.out.println("Não existe essa obra ");
         }else {
             obraDAO.deletar(obra);

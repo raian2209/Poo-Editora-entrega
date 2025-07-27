@@ -76,12 +76,22 @@ public class DonoGerenciarAvaliadoresController implements Initializable {
 
     @FXML
     void adicionarAvaliador(ActionEvent event) {
-        // TODO: Lógica para abrir tela de cadastro de avaliador.
+        HelloApplication.telaDonoAvaliadorAdicionar();
     }
 
     @FXML
     void atualizarAvaliador(ActionEvent event) {
         // TODO: Lógica para pegar o item selecionado na tabela e abrir tela de edição.
+        Avaliador avaliadorSelecionado = tabelaAvaliadores.getSelectionModel().getSelectedItem();
+
+        // 2. Verifica se um item foi realmente selecionado
+        if (avaliadorSelecionado != null) {
+
+                HelloApplication.telaDonoAvaliadorEditar(avaliadorSelecionado);
+
+        }else{
+
+        }
     }
 
     @FXML

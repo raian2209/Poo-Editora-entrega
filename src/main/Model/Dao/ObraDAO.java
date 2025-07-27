@@ -59,10 +59,10 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
         em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            Escritor gerenciado = em.find(Escritor.class, entidade.getId());
-            if (entidade != null && em.contains(entidade)){
+            Obra gerenciado = em.find(Obra.class, entidade.getId());
+
                 em.remove(gerenciado);
-        }
+
             em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {

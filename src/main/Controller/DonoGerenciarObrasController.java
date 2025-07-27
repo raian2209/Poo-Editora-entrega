@@ -73,7 +73,7 @@ public class DonoGerenciarObrasController {
 
     @FXML
     void adicionarObra(ActionEvent event) {
-        // TODO: Lógica para pegar o item selecionado na tabela e abrir tela de edição.
+        HelloApplication.telaDonoObraAdicionar();
     }
 
     @FXML

@@ -15,7 +15,7 @@ public class Obra {
     @Column
     private String genero;
     @Column
-    private int ano;
+    private Integer ano;
 
     @ManyToOne
     @JoinColumn(name="autor_id")

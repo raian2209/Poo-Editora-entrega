@@ -32,7 +32,7 @@ public class AvaliadorService implements UserInterService<Avaliador>{
         if(AvaliadorDAO.buscarPorCPF(avaliador.getCpf())==null){
             System.out.println("não existe um avaliador com esse cpf");
         }else {
-            AvaliadorDAO.salvar(avaliador);
+            AvaliadorDAO.atualizar(avaliador);
         }
     }
 

@@ -77,7 +77,7 @@ public class DonoDashboardController implements Initializable {
 
     @FXML
     void adicionarAutor(ActionEvent event) {
-
+        HelloApplication.telaDonoEscritorAdicionar();
     }
     @FXML
     void atualizarAutor(ActionEvent event) {
