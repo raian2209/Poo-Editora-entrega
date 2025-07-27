@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.Entities.Avaliador;
 import main.Entities.Escritor;
+import main.Entities.Obra;
 import main.Model.Service.AvaliadorService;
 import main.Model.Service.EscritorService;
 import main.view.HelloApplication;
@@ -81,7 +82,16 @@ public class DonoDashboardController implements Initializable {
     }
     @FXML
     void atualizarAutor(ActionEvent event) {
+        Escritor escritorSelecionado = tabelaEscritor.getSelectionModel().getSelectedItem();
 
+        // 2. Verifica se um item foi realmente selecionado
+        if (escritorSelecionado != null) {
+
+            HelloApplication.telaDonoEscritorEditar(escritorSelecionado);
+
+        }else{
+
+        }
     }
     @FXML
     void deletarAutor(ActionEvent event) {

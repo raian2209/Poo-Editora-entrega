@@ -129,10 +129,10 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
         }
     }
 
-    public Avaliacoes buscarPorId(Obra obra) {
+    public Obra buscarPorId(Obra obra) {
         em = JPAUtil.getEntityManager();
         try {
-            return em.find(Avaliacoes.class, obra.getId());
+            return em.find(Obra.class, obra.getId());
         } finally {
             em.close();
         }

@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.Controller.DataReceiver;
 import main.Entities.Avaliador;
+import main.Entities.Escritor;
+import main.Entities.Obra;
 
 
 import java.io.IOException;
@@ -41,22 +43,18 @@ public class HelloApplication extends Application {
 
     public static <T> void trocarTela(String fxmlPath, String windowTitle, T data) {
         try {
-            // 1. Cria a instância do FXMLLoader
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlPath));
 
-            // 2. Carrega o FXML. Isso cria a instância do controller associado.
             Parent root = loader.load();
 
-            // 3. Pega a referência do controller que acabou de ser criado
             Object controller = loader.getController();
 
-            // 4. Verifica se o controller está pronto para receber dados
+            //  Verifica se o controller está pronto para receber dados
             if (data != null && controller instanceof DataReceiver) {
                 // Se sim, faz o "cast" e chama o método initData para enviar o objeto
                 ((DataReceiver<T>) controller).initData(data);
             }
 
-            // 5. Cria a nova cena e a define no palco principal
             Scene scene = new Scene(root);
             mainStage.setTitle(windowTitle);
             mainStage.setScene(scene);
@@ -69,7 +67,7 @@ public class HelloApplication extends Application {
     }
 
 
-    // Agora os métodos específicos apenas chamam o método genérico
+
     public static void telaLogin() {
         trocarTela("/Telas/tela-login.fxml", "Tela de Login");
     }
@@ -81,6 +79,11 @@ public class HelloApplication extends Application {
     public static void telaDonoEscritorAdicionar() {
         trocarTela("/Telas/NovoEscritorView.fxml", "Tela do Dono/Escritor add");
     }
+
+    public static void telaDonoEscritorEditar(Escritor escritor) {
+        trocarTela("/Telas/EditarEscritorView.fxml", "Tela do Dono/Avaliador add",escritor);
+    }
+
     public static void telaDonoObra() {
         trocarTela("/Telas/DashboardDonoObra.fxml", "Tela do Dono/Obra");
     }
@@ -90,12 +93,18 @@ public class HelloApplication extends Application {
     }
 
 
+    public static void telaDonoObraEditar(Obra obra) {
+        trocarTela("/Telas/EditarObraView.fxml", "Tela do Dono/Avaliador add",obra);
+    }
+
+
     public static void telaDonoAvaliador() {
         trocarTela("/Telas/DashboardDonoAvaliador.fxml", "Tela do Dono/Avaliador");
     }
     public static void telaDonoAvaliadorAdicionar() {
         trocarTela("/Telas/NovoAvaliadorView.fxml", "Tela do Dono/Avaliador add");
     }
+
     public static void telaDonoAvaliadorEditar(Avaliador avaliador) {
         trocarTela("/Telas/EditarAvaliadorView.fxml", "Tela do Dono/Avaliador add",avaliador);
     }
