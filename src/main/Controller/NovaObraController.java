@@ -11,9 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Entities.Escritor;
 import main.Entities.Obra;
+import main.Exceptions.CamposVaziosException;
+import main.Exceptions.NumeroInvalidoExeption;
+import main.Exceptions.TituloDigitadoJaExistente;
 import main.Model.Service.EscritorService;
 import main.Model.Service.ObraService;
 import main.view.HelloApplication;
+import main.Model.Builders.*;
 
 import java.net.URL;
 import java.util.List;
@@ -55,29 +59,76 @@ public class NovaObraController implements Initializable {
 
     @FXML
     void handleAdicionarObra(ActionEvent event) {
-        // Validação dos campos
-        if (tituloField.getText().isEmpty() || autorComboBox.getValue() == null || generoComboBox.getValue() == null || AnoBox.getText().isEmpty()) {
-            mostrarAlerta("Campos Vazios", "Por favor, preencha todos os campos para adicionar a obra.");
-            return;
-        }
-        // Criação do objeto Obra
-        Integer ano = Integer.parseInt(AnoBox.getText());
-        String titulo = tituloField.getText();
-        Escritor escritor = autorComboBox.getValue();
-        String genero = generoComboBox.getValue();
+        try {
+            // 1. Validações
+            if (tituloField.getText().isEmpty() || autorComboBox.getValue() == null || generoComboBox.getValue() == null || AnoBox.getText().isEmpty()) {
+                throw new CamposVaziosException("Por favor, preencha todos os campos para adicionar a obra.");
+            }
 
-        //  construtor
-        Obra novaObra = new Obra(titulo, genero,ano,escritor); // Ajuste conforme sua entidade
+            int ano;
+            try {
+                ano = Integer.parseInt(AnoBox.getText());
+            } catch (NumberFormatException e) {
+                throw new NumeroInvalidoExeption("O campo 'Ano' deve conter um número válido.");
+            }
 
-        // Salva no banco de dados
-        ObraService obraService = new ObraService();
-        obraService.salvar(novaObra);
+            String titulo = tituloField.getText();
+            ObraService obraService = new ObraService();
+            if (!obraService.buscarPorTitulo(titulo).isEmpty()) {
+                throw new TituloDigitadoJaExistente("Já existe uma obra cadastrada com este título.");
+            }
 
-        System.out.println("Obra adicionada com sucesso: " + novaObra);
+            // ---------------------Builders
 
-        // Fecha a janela modal
-        if (stage != null) {
-            stage.close();
+            Escritor escritor = autorComboBox.getValue();
+            String genero = generoComboBox.getValue();
+
+            ObraBuilder builder = new ConcreteObraBuilder();
+            ObraDirector director = new ObraDirector();
+
+            // Verificar o genero da obra e fazer com q ela seja do genero selecionado
+            switch (genero) {
+                case "Fantasia":
+                    director.constructFantasia(builder, titulo, escritor, ano);
+                    break;
+                case "Ficção":
+                    director.constructFiccao(builder, titulo, escritor, ano);
+                    break;
+                case "Romance":
+                    director.constructRomance(builder, titulo, escritor, ano);
+                    break;
+                case "Suspense":
+                    director.constructSuspense(builder, titulo, escritor, ano);
+                    break;
+                case "Técnico":
+                    director.constructTecnico(builder, titulo, escritor, ano);
+                    break;
+                case "Biografia":
+                    director.constructBiografia(builder, titulo, escritor, ano);
+                    break;
+            }
+
+            Obra novaObra = builder.getResult();
+
+            // ----------------------------------------
+
+            // Aelrta
+            obraService.salvar(novaObra);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sucesso");
+            alert.setHeaderText(null);
+            alert.setContentText("Obra adicionada com sucesso!");
+            alert.showAndWait();
+
+            HelloApplication.telaDonoObra();
+
+        } catch (CamposVaziosException e) {
+            mostrarAlerta("Campos Vazios", e.getMessage());
+        } catch (NumeroInvalidoExeption e) {
+            mostrarAlerta("Ano Inválido", e.getMessage());
+        } catch (TituloDigitadoJaExistente e) {
+            mostrarAlerta("Título já Existe", e.getMessage());
         }
     }
 

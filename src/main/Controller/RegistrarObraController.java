@@ -17,7 +17,7 @@ import main.Model.Service.ObraService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-//----------------LEMBRAR DE TIRAR OS ESCRITORES CRIADOS PRA TESTE--------------------------------//
+//-----------------------Alteracoes
 public class RegistrarObraController implements Initializable {
     ObraService obraService = new  ObraService();
     EscritorService escritorService = new EscritorService();
