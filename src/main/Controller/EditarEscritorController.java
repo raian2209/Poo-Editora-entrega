@@ -60,6 +60,13 @@ public class EditarEscritorController implements DataReceiver<Escritor> {
         escritorService.atualisar(escritorParaEditar);
 
         System.out.println("Escritor atualizado com sucesso: " + escritorParaEditar.getNome());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sucesso");
+        alert.setHeaderText(null);
+        alert.setContentText("Dados foram editados com sucesso!");
+        alert.showAndWait();
+
+        HelloApplication.telaDono();
 
         if (stage != null) {
             stage.close();
