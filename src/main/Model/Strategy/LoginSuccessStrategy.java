@@ -1,5 +1,5 @@
 package main.Model.Strategy;
 
-public interface LoginSuccessStrategy {
-    void execute();
+public interface LoginSuccessStrategy<T> {
+    void  execute(T conta);
 }

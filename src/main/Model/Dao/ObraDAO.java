@@ -97,8 +97,9 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
     public List<Obra> buscarPorEscritor(Escritor escritor) {
         em = JPAUtil.getEntityManager();
         try {
-            TypedQuery<Obra> query = em.createQuery("SELECT o FROM Obra o WHERE o.autor = :autor", Obra.class);
-            query.setParameter("autor", escritor);
+
+            TypedQuery<Obra> query = em.createQuery("SELECT o FROM Obra o WHERE o.autor.id = :autor", Obra.class);
+            query.setParameter("autor", escritor.getId());
             return query.getResultList();
         } finally {
             em.close();
@@ -109,6 +110,7 @@ public class ObraDAO extends AbstractDAO implements ObraGenericInterDAO<Obra> {
     public List<Obra> buscarPorTitulo(String titulo) {
         em = JPAUtil.getEntityManager();
         try {
+
             TypedQuery<Obra> query = em.createQuery("SELECT o FROM Obra o WHERE o.titulo LIKE :titulo", Obra.class);
             query.setParameter("titulo", "%" + titulo + "%");
             return query.getResultList();

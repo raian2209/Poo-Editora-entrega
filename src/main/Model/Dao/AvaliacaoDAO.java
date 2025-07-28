@@ -128,6 +128,19 @@ public class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Avali
         }
     }
 
+    public List<Avaliacoes> buscarPorAvaliadorComStatusNaoAvaliado(Avaliador avaliador) {
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Avaliacoes> query = em.createQuery(
+                    "SELECT a FROM Avaliacoes a WHERE a.avaliadorObra = :avaliadorObra AND a.status = :status", Avaliacoes.class);
+            query.setParameter("avaliadorObra", avaliador);
+            query.setParameter("status", Status.PADRAO);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
     public List<Avaliacoes> buscarAposDataComStatusNaoAvaliado(LocalDateTime dataLimite) {
         em = JPAUtil.getEntityManager();
         try {
@@ -140,6 +153,19 @@ public class AvaliacaoDAO extends AbstractDAO implements AvaliacaoInterDAO<Avali
             em.close();
         }
     }
+
+    public List<Avaliacoes> buscarStatusAvaliado() {
+        em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Avaliacoes> query = em.createQuery(
+                    "SELECT a FROM Avaliacoes a WHERE a.status <> :status", Avaliacoes.class);
+            query.setParameter("status", Status.PADRAO);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
 
     public List<Avaliacoes> buscarAposData(LocalDateTime dataLimite) {
         em = JPAUtil.getEntityManager();

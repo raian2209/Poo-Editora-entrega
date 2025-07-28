@@ -94,6 +94,13 @@ public class Conta {
         setEndereco(endereco);
         setSenha(senha);
     }
+    public Conta(long id,String nome, String cpf, String endereco, String senha ) {
+        setId(id);
+        setNome(nome);
+        setCpf(cpf);
+        setEndereco(endereco);
+        setSenha(senha);
+    }
     
     public Conta() {
     	

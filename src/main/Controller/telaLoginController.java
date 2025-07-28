@@ -16,13 +16,12 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 
-import main.Entities.Avaliador;
-import main.Entities.Dono;
-import main.Entities.Escritor;
+import main.Entities.*;
+import main.Exceptions.TipoUsuarionaoConhecido;
 import main.Exceptions.UsuarioOuSenhaIncorretosException;
 import main.Model.Dao.ContaDAO;
-import main.Entities.Conta;
 import main.Model.Dao.EscritorDAO;
+import main.Model.Dao.ObraDAO;
 import main.Model.Factory.ContaFactory;
 import main.Model.Service.AvaliadorService;
 import main.Model.Service.EscritorService;
@@ -74,7 +73,7 @@ public class telaLoginController implements Initializable {
 
             if (strategy != null) {
                 // Executa a estratégia (navegação, etc.)
-                strategy.execute();
+                strategy.execute(contaAutenticada);
             } else {
                 System.out.println("Nenhuma ação definida para o tipo de conta: " + contaAutenticada.getClass().getSimpleName());
             }
@@ -84,7 +83,7 @@ public class telaLoginController implements Initializable {
             throw new UsuarioOuSenhaIncorretosException("Usuario ou Senha não reconhecido: " + cpfUsuario.getText() + " "+ senha.getText());
 
         }
-        } catch (IllegalArgumentException e){
+        } catch (TipoUsuarionaoConhecido e){
             mostrarAlerta(Alert.AlertType.ERROR, "Dados Não reconhecidos", "Tipo de usuario não encontrado", "Tipo de Usuario não reconhecido");
         } catch (UsuarioOuSenhaIncorretosException e){
             mostrarAlerta(Alert.AlertType.ERROR, "Dados incorretos", "Usuário ou senha não encontrados", "Usuário ou senha incorretos");
@@ -107,13 +106,20 @@ public class telaLoginController implements Initializable {
                 "Avenida Central, 123",      // endereco
                 "123"       // senha
         );
+        Avaliador avaliador = new Avaliador("Guga", "111.111.111-11", "Mossoro rn", "123");
+        Escritor escritor = new Escritor("Alisson", "135.822.114-60", "Equador-RN", "123");
 
         ContaDAO contaDAO = new ContaDAO();
         if(contaDAO.buscarPorCPF(novoDono.getCpf())==null) {
             contaDAO.salvar(novoDono);
+            contaDAO.salvar(escritor);
+            contaDAO.salvar(avaliador);
+            Escritor escritorDoBanco = (Escritor) contaDAO.buscarPorCPF("135.822.114-60");
+            Obra obra = new Obra("tata" , "fifi", 1500,escritorDoBanco);
+            ObraDAO obraDAO = new ObraDAO();
+            obraDAO.salvar(obra);
         }
-        avaliadorService.salvar(avaliador);
-        escritorService.salvar(escritor);
+
     }
 
 

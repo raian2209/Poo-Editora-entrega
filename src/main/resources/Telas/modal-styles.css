@@ -54,3 +54,28 @@
 .form-button:hover {
     -fx-background-color: #311b92; /* Roxo mais escuro no hover */
 }
+
+/* Adicionar ao final do arquivo modal-styles.css */
+
+/* Estilo para o TextArea, para que se pareça com os outros campos */
+.text-area.form-input {
+    -fx-pref-height: 120px; /* Altura inicial */
+}
+
+/* Estilos para os detalhes da obra (apenas leitura) */
+.info-grid {
+    -fx-padding: 10px;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 5px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 5px;
+}
+
+.info-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+.info-value {
+    -fx-text-fill: #333333;
+}

@@ -35,11 +35,11 @@ public class AvaliacaoService implements AvaliacaoInterService<Avaliacoes>{
         if(avaliacaoDAO.buscarPorId(avaliacao.getId())==null) {
             System.out.println("Não existe esse avaliação");
         } else {
-            avaliacaoDAO.deletar(avaliacao);
+            avaliacaoDAO.atualizar(avaliacao);
         }
     }
 
-    private List<Avaliacoes> avaliadoAteData(LocalDateTime tempo){
+    public List<Avaliacoes> avaliadoAteData(LocalDateTime tempo){
         return avaliacaoDAO.buscarAposDataComStatusAvaliado(tempo);
     }
 
@@ -57,6 +57,12 @@ public class AvaliacaoService implements AvaliacaoInterService<Avaliacoes>{
     public List<Avaliacoes> relatorioPorAvaliador(Avaliador avaliador){
         return avaliacaoDAO.buscarPorAvaliadorComStatusAvaliado(avaliador);
     }
+
+    public List<Avaliacoes> avaliacoesNaoAvaliadas(Avaliador  avaliador){
+        return avaliacaoDAO.buscarPorAvaliadorComStatusNaoAvaliado(avaliador);
+    }
+
+    public List<Avaliacoes> avaliacoesAvaliadas(){return avaliacaoDAO.buscarStatusAvaliado();}
 
     public List<Avaliacoes> BuscarTodos(){
         return avaliacaoDAO.BuscarTodos();

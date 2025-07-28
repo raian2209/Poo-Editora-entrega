@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane prefHeight="650.0" prefWidth="1000.0" stylesheets="@dashboard-styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.DashboardAvaliadorController">
+
+    <left>
+        <VBox prefWidth="240.0" styleClass="sidebar">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="80.0" styleClass="sidebar-header">
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                    <children>
+                        <Label fx:id="nomeAvaliadorLabel" styleClass="sidebar-logo-text" text="Painel do Avaliador" />
+                    </children>
+                </HBox>
+
+                <Button fx:id="btnParaAvaliar" contentDisplay="LEFT" onAction="#handleMostrarObrasParaAvaliar" styleClass="sidebar-button" text="Obras para Avaliar">
+                    <graphic>
+                        <SVGPath content="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V6h5.17l2 2H20v10z" />
+                    </graphic>
+                </Button>
+                <Button fx:id="btnAvaliadas" contentDisplay="LEFT" onAction="#handleObrasAvaliadas" styleClass="sidebar-button" text="Obras já Avaliadas">
+                    <graphic>
+                        <SVGPath content="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                    </graphic>
+                </Button>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button fx:id="btnLogout" contentDisplay="LEFT" onAction="#handleLogout" styleClass="sidebar-button" text="Logout">
+                    <graphic>
+                        <SVGPath content="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
+                    </graphic>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox fx:id="contentArea" styleClass="content-area">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+            <children>
+                <Label fx:id="tituloDaPagina" styleClass="content-title" text="Obras Pendentes de Avaliação" />
+
+                <TableView fx:id="tabelaAvaliacoes" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="tituloColumn" prefWidth="500.0" text="Título da Obra" />
+                        <TableColumn fx:id="statusColumn" prefWidth="250.0" text="Status" />
+                     </columns>
+                </TableView>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="table-actions">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleAvaliarObra" styleClass="action-button-primary" text="Avaliar Obra Selecionada" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.Controller.AvaliacaoModalController;
 import main.Controller.DataReceiver;
+import main.Entities.Avaliacoes;
 import main.Entities.Avaliador;
 import main.Entities.Escritor;
 import main.Entities.Obra;
@@ -66,6 +68,31 @@ public class HelloApplication extends Application {
         }
     }
 
+    public static void trocarTela(String fxmlPath, String windowTitle, Avaliacoes avaliacao , Avaliador avaliador) {
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlPath));
+
+            Parent root = loader.load();
+
+            AvaliacaoModalController controller = loader.getController();
+
+            //  Verifica se o controller está pronto para receber dados
+            if (avaliacao != null ) {
+                // Se sim, faz o "cast" e chama o método initData para enviar o objeto
+                 controller.initData(avaliacao,avaliador);
+            }
+
+            Scene scene = new Scene(root);
+            mainStage.setTitle(windowTitle);
+            mainStage.setScene(scene);
+            mainStage.show();
+
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar FXML: " + fxmlPath);
+            e.printStackTrace();
+        }
+    }
+
 
 
     public static void telaLogin() {
@@ -113,14 +140,23 @@ public class HelloApplication extends Application {
         trocarTela("/Telas/DashboardDonoAvaliacao.fxml", "Tela do Dono/Avaliacoes");
     }
     public static void telaDonoRelatorio() {
-        trocarTela("/Telas/DashboardDonoAvaliador.fxml", "Tela do Dono/Avaliador");
+        trocarTela("/Telas/DashboardDonoRelatorioAvaliacoes.fxml", "Tela do Dono/Relatorio");
     }
 
-    public static void telaAvaliadorInicial() {
-        trocarTela("/Telas/DashboardAvaliador.fxml", "Tela do Dono");
+    public static void telaEscritorLogin(Escritor escritor) {
+        trocarTela("/Telas/DashboardEscritorLogin.fxml", "Tela do Dono", escritor);
     }
-    public static void telaEscritorInicial() {
-        trocarTela("/Telas/DashboardEscritor.fxml", "Tela do Dono");
+
+    public static void telaAvaliadorLogin(Avaliador avaliador) {
+        trocarTela("/Telas/DashboardAvaliador.fxml", "Tela do Dono", avaliador);
+    }
+
+    public static void telaAvaliadorAvaliado(Avaliador avaliador) {
+        trocarTela("/Telas/DashboardAvaliadorAvaliado.fxml", "Tela do Dono",avaliador);
+    }
+
+    public static void telaAvaliadorAvaliar(Avaliacoes avaliacoe,Avaliador avaliador) {
+        trocarTela("/Telas/DashboardAvaliadorAvaliar.fxml", "Tela do Dono",avaliacoe,avaliador);
     }
 
     public static void telaRegistrarObra() {

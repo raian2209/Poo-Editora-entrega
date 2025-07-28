@@ -18,7 +18,7 @@ public class Obra {
     private Integer ano;
 
     @ManyToOne
-    @JoinColumn(name="autor_id")
+    @JoinColumn(name="autor_id", nullable = false)
     private Escritor autor;
 
     // O GENERO SERIA MELHOR COMO ENUM ?

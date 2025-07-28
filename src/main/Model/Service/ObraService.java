@@ -5,11 +5,17 @@ import main.Entities.Obra;
 import main.Model.Dao.EscritorDAO;
 import main.Model.Dao.ObraDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObraService implements ObraInterService<Obra>{
     private EscritorDAO escritorDAO = new EscritorDAO();
     private ObraDAO obraDAO= new ObraDAO();
+
+
+    public Obra buscarPorId(Obra obra){
+            return obraDAO.buscarPorId(obra);
+    }
 
     public void salvar(Obra obra){
         if(escritorDAO.buscarPorCPF(obra.getAutor().getCpf())==null){
@@ -50,8 +56,16 @@ public class ObraService implements ObraInterService<Obra>{
 
     @Override
     public List<Obra> buscarPorEscritor(Escritor escritor) {
-        return obraDAO.buscarPorEscritor(escritor);
+        List<Obra> obrasEncontradas = obraDAO.buscarPorEscritor(escritor);
+        if(obrasEncontradas.isEmpty()){
+            System.out.println("Nenhuma obra encontrada para o escritor: " + escritor.getNome());
+            return new ArrayList<>();
+        }
+        return obrasEncontradas;
+
     }
+
+
 
     @Override
     public List<Obra> buscarPorTitulo(String titulo) {

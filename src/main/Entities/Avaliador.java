@@ -30,7 +30,9 @@ public class Avaliador extends Conta {
     public Avaliador() {
         super();
     }
-
+    public Avaliador(long id, String nome, String cpf, String endereco,String senha) {
+        super(id, nome, cpf, endereco,senha);
+    }
     //alteracao no tostring
     @Override
     public String toString() {

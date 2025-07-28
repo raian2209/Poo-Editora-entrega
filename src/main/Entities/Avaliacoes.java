@@ -104,8 +104,7 @@ public class Avaliacoes {
         if (dataStr == null || dataStr.isBlank()) {
             return LocalDateTime.now();
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-        return LocalDateTime.parse(dataStr, formatter);
+        return LocalDateTime.parse(dataStr);
     }
 
     @Override
