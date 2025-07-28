@@ -59,6 +59,15 @@ public class EditarAvaliadorController implements DataReceiver<Avaliador>{
         avaliadorService.atualisar(avaliadorParaEditar);
 
         System.out.println("Avaliador atualizado com sucesso: " + avaliadorParaEditar.getNome());
+        // ---------------------------------------------------------
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sucesso");
+        alert.setHeaderText(null);
+        alert.setContentText("Dados atualizados com sucesso!");
+        alert.showAndWait();
+
+        HelloApplication.telaDonoAvaliador();
+        // ---------------------------------------------------------
 
         if (stage != null) {
             stage.close();
