@@ -10,9 +10,11 @@ public class ObraDirector {
                 .buildAno(ano)
                 .buildAutor(autor);
     }
+
     public void constructFiccao(ObraBuilder builder, String titulo, Escritor autor, int ano) {
         builder.buildTitulo(titulo)
                 .buildGenero("Ficção")
+
                 .buildAno(ano)
                 .buildAutor(autor);
     }
@@ -28,6 +30,7 @@ public class ObraDirector {
                 .buildAno(ano)
                 .buildAutor(autor);
     }
+
     public void constructTecnico(ObraBuilder builder, String titulo, Escritor autor, int ano) {
         builder.buildTitulo(titulo)
                 .buildGenero("Técnico")
@@ -40,4 +43,5 @@ public class ObraDirector {
                 .buildAno(ano)
                 .buildAutor(autor);
     }
+
 }
