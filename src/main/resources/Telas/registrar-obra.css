@@ -1,0 +1,45 @@
+/* Fundo */
+.background-panel {
+    -fx-background-color: #ffffff;
+}
+
+.title-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 15px 0;
+}
+
+/* Estilo TextFields e ComboBox */
+.custom-field {
+    -fx-background-color: #f4f7fc;
+    -fx-background-radius: 8px;
+    -fx-border-color: #dfe4ea;
+    -fx-border-radius: 8px;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+/* Muda a cor da borda quando o campo está focado */
+.custom-field:focused {
+    -fx-border-color: #0078D7;
+}
+
+/* Estilo para o botão de registrar */
+.register-button {
+    -fx-background-color: #0078D7;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.register-button:hover {
+    -fx-background-color: #005a9e;
+}
+
+/* Remove o fundo do ComboBox para parecer que está no TextField */
+.combo-in-textfield {
+    -fx-background-color: transparent;
+}

@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.RegistrarObraController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<VBox alignment="CENTER" spacing="15.0" styleClass="background-panel" stylesheets="@registrar-obra.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.RegistrarObraController">
    <children>
-      <TextField fx:id="titulo" layoutX="263.0" layoutY="155.0" prefHeight="25.0" prefWidth="275.0" promptText="Título" />
-      <TextField fx:id="genero" layoutX="264.0" layoutY="201.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="275.0" promptText="Gênero" />
-      <TextField fx:id="ano" layoutX="262.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="275.0" promptText="Ano" />
-      <TextField fx:id="cpfDoAutor" layoutX="262.0" layoutY="300.0" prefHeight="25.0" prefWidth="275.0" promptText="CPF do autor" />
-      <Button fx:id="registrar" layoutX="362.0" layoutY="363.0" mnemonicParsing="false" onAction="#registrarObra" prefHeight="35.0" prefWidth="78.0" text="Registrar" />
-      <Label layoutX="282.0" layoutY="69.0" style="-fx-font-weight: bold;" text="Registrar obra">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Label>
+      <Label styleClass="title-label" text="Registrar Nova Obra" />
+
+      <TextField fx:id="titulo" maxWidth="400.0" promptText="Título" styleClass="custom-field" />
+
+      <StackPane maxWidth="400.0">
+         <children>
+            <TextField fx:id="genero" promptText="Gênero" styleClass="custom-field" />
+            <ComboBox fx:id="seletorGenero" prefWidth="45.0" styleClass="combo-in-textfield" StackPane.alignment="CENTER_RIGHT">
+               <StackPane.margin>
+                  <Insets right="5.0" />
+               </StackPane.margin>
+            </ComboBox>
+         </children>
+      </StackPane>
+
+      <TextField fx:id="ano" maxWidth="400.0" promptText="Ano de Publicação" styleClass="custom-field" />
+      <TextField fx:id="cpfDoAutor" maxWidth="400.0" promptText="CPF do Autor" styleClass="custom-field" />
+
+      <Button fx:id="registrar" maxWidth="400.0" mnemonicParsing="false" onAction="#registrarObra" prefHeight="40.0" styleClass="register-button" text="Registrar" />
    </children>
-</Pane>
+</VBox>
