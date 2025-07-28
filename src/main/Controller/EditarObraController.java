@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Entities.Escritor;
 import main.Entities.Obra;
+import main.Exceptions.CamposVaziosException;
+import main.Exceptions.NumeroInvalidoExeption;
+import main.Exceptions.TituloDigitadoJaExistente;
 import main.Model.Service.EscritorService;
 import main.Model.Service.ObraService;
 import main.view.HelloApplication;
@@ -60,25 +63,51 @@ public class EditarObraController implements DataReceiver<Obra>, Initializable {
 
     @FXML
     void handleSalvarAlteracoes(ActionEvent event) {
-        if (tituloField.getText().isEmpty() || anoField.getText().isEmpty() || autorComboBox.getValue() == null || generoComboBox.getValue() == null) {
-            mostrarAlerta("Campos Vazios", "Todos os campos devem ser preenchidos.");
-            return;
-        }
+        try {
 
-        // Atualiza o objeto Obra com os novos dados
-        obraParaEditar.setTitulo(tituloField.getText());
-        obraParaEditar.setAno(Integer.parseInt(anoField.getText()));
-        obraParaEditar.setAutor(autorComboBox.getValue());
-        obraParaEditar.setGenero(generoComboBox.getValue());
+            if (tituloField.getText().isEmpty() || anoField.getText().isEmpty() || autorComboBox.getValue() == null || generoComboBox.getValue() == null) {
+                throw new CamposVaziosException("Todos os campos devem ser preenchidos.");
+            }
 
-        // Usa o serviço de Obra para salvar as alterações
-        ObraService obraService = new ObraService();
-        obraService.atualisar(obraParaEditar);
+            int ano;
+            try {
+                ano = Integer.parseInt(anoField.getText());
+            } catch (NumberFormatException e) {
+                throw new NumeroInvalidoExeption("O campo 'Ano' deve conter um número válido.");
+            }
 
-        System.out.println("Obra atualizada com sucesso: " + obraParaEditar.getTitulo());
+            String novoTitulo = tituloField.getText();
+            ObraService obraService = new ObraService();
 
-        if (stage != null) {
-            stage.close();
+            if (!novoTitulo.equals(obraParaEditar.getTitulo()) && !obraService.buscarPorTitulo(novoTitulo).isEmpty()) {
+                throw new TituloDigitadoJaExistente("Já existe outra obra cadastrada com este título.");
+            }
+
+            obraParaEditar.setTitulo(novoTitulo);
+            obraParaEditar.setAno(ano);
+            obraParaEditar.setAutor(autorComboBox.getValue());
+            obraParaEditar.setGenero(generoComboBox.getValue());
+
+            obraService.atualisar(obraParaEditar);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sucesso");
+            alert.setHeaderText(null);
+            alert.setContentText("Obra atualizada com sucesso!");
+            alert.showAndWait();
+
+            HelloApplication.telaDonoObra();
+
+            if (stage != null) {
+                stage.close();
+            }
+
+        } catch (CamposVaziosException e) {
+            mostrarAlerta("Campos Vazios", e.getMessage());
+        } catch (NumeroInvalidoExeption e) {
+            mostrarAlerta("Ano Inválido", e.getMessage());
+        } catch (TituloDigitadoJaExistente e) {
+            mostrarAlerta("Título já Existe", e.getMessage());
         }
     }
 
