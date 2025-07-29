@@ -1,5 +1,5 @@
-// Crie um novo arquivo: ObraDirector.java
 package main.Model.Builders;
+
 
 import main.Entities.Escritor;
 
@@ -10,11 +10,9 @@ public class ObraDirector {
                 .buildAno(ano)
                 .buildAutor(autor);
     }
-
-    public void constructFiccao(ObraBuilder builder, String titulo, Escritor autor, int ano) {
+    public void constructTerror(ObraBuilder builder, String titulo, Escritor autor, int ano) {
         builder.buildTitulo(titulo)
-                .buildGenero("Ficção")
-
+                .buildGenero("Terror")
                 .buildAno(ano)
                 .buildAutor(autor);
     }
@@ -31,17 +29,24 @@ public class ObraDirector {
                 .buildAutor(autor);
     }
 
+    public void constructFiccao(ObraBuilder builder, String titulo, Escritor autor, int ano) {
+        builder.buildTitulo(titulo)
+                .buildGenero("Ficção")
+                .buildAno(ano)
+                .buildAutor(autor);
+    }
+
     public void constructTecnico(ObraBuilder builder, String titulo, Escritor autor, int ano) {
         builder.buildTitulo(titulo)
                 .buildGenero("Técnico")
                 .buildAno(ano)
                 .buildAutor(autor);
     }
+
     public void constructBiografia(ObraBuilder builder, String titulo, Escritor autor, int ano) {
         builder.buildTitulo(titulo)
                 .buildGenero("Biografia")
                 .buildAno(ano)
                 .buildAutor(autor);
     }
-
 }

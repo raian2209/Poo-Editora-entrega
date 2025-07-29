@@ -46,10 +46,6 @@ public class EditarObraController implements DataReceiver<Obra>, Initializable {
         carregarGeneros();
     }
 
-    /**
-     * Recebe o objeto Obra selecionado na tabela e preenche os campos.
-     * @param obra O objeto Obra para editar.
-     */
     @Override
     public void initData(Obra obra) {
         this.obraParaEditar = obra;
@@ -126,7 +122,7 @@ public class EditarObraController implements DataReceiver<Obra>, Initializable {
 
     private void carregarGeneros() {
         generoComboBox.setItems(FXCollections.observableArrayList(
-                "Ficção", "Romance", "Fantasia", "Suspense", "Biografia", "Técnico"
+                "Ficção", "Romance", "Fantasia", "Suspense", "Biografia", "Técnico", "Terror"
         ));
     }
 

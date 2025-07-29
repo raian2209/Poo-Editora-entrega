@@ -14,10 +14,10 @@ import main.Entities.Obra;
 import main.Exceptions.CamposVaziosException;
 import main.Exceptions.NumeroInvalidoExeption;
 import main.Exceptions.TituloDigitadoJaExistente;
+import main.Model.Builders.*;
 import main.Model.Service.EscritorService;
 import main.Model.Service.ObraService;
 import main.view.HelloApplication;
-import main.Model.Builders.*;
 
 import java.net.URL;
 import java.util.List;
@@ -53,7 +53,7 @@ public class NovaObraController implements Initializable {
     private void carregarGeneros() {
         // Lista fixa de gêneros para o exemplo
         generoComboBox.setItems(FXCollections.observableArrayList(
-                "Ficção", "Romance", "Fantasia", "Suspense", "Biografia", "Técnico"
+                "Ficção", "Romance", "Fantasia", "Suspense", "Biografia", "Técnico", "Terror"
         ));
     }
 
@@ -106,6 +106,8 @@ public class NovaObraController implements Initializable {
                 case "Biografia":
                     director.constructBiografia(builder, titulo, escritor, ano);
                     break;
+                case "Terror":
+                    director.constructTerror(builder, titulo, escritor, ano);
             }
 
             Obra novaObra = builder.getResult();
@@ -133,7 +135,7 @@ public class NovaObraController implements Initializable {
     }
 
     @FXML
-     void handleClose(ActionEvent event){
+    void handleClose(ActionEvent event){
         HelloApplication.telaDonoObra();
     }
     private void mostrarAlerta(String titulo, String mensagem) {

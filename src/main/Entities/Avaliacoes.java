@@ -25,6 +25,9 @@ public class Avaliacoes {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column
+    private String justificativa;
+
 
 // construtores
 // CONSTRUTOR PARA A CRIAÇÃO DO OBJETO
@@ -97,6 +100,13 @@ public class Avaliacoes {
 
     public String getStatus() {
         return status.getAvaliar();
+    }
+
+    public void setJustificativa(String justificativa) {
+        this.justificativa = justificativa;
+    }
+    public String getJustificativa() {
+        return this.justificativa;
     }
 
 // metodos

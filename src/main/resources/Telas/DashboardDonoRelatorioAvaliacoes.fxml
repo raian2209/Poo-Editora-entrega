@@ -56,6 +56,8 @@
 
                         <Button mnemonicParsing="false" onAction="#handleFiltrar" text="Filtrar" />
                         <Button mnemonicParsing="false" onAction="#handleLimparFiltro" text="Limpar Filtro" />
+
+                        <Button fx:id="btnBaixarPDF" mnemonicParsing="false" onAction="#handleBaixarPDF" text="Baixar PDF" />
                     </children>
                 </HBox>
                 <TableView fx:id="tabelaAvaliacoes" VBox.vgrow="ALWAYS">
@@ -64,6 +66,9 @@
                         <TableColumn fx:id="nomeAvaliadorColumn" prefWidth="250.0" text="Nome do Avaliador" />
                         <TableColumn fx:id="statusColumn" prefWidth="150.0" text="Status da Avaliação" />
                         <TableColumn fx:id="dataColumn" prefWidth="200.0" text="Data da Avaliação" />
+                        <!--ADICIONEI-->
+                        <TableColumn fx:id="justificativaColumn" prefWidth="300.0" text="Justificativa" />
+                        <!--ANOTANDO P LEMBRAR DE TIRAR CASO DE ERRO-->
                     </columns>
                 </TableView>
             </children>

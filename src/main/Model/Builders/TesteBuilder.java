@@ -2,6 +2,7 @@ package main.Model.Builders;
 
 import main.Entities.Escritor;
 import main.Entities.Obra;
+import main.Model.Builders.ConcreteObraBuilder;
 
 public class TesteBuilder {
     public static void main(String[] args) {
@@ -18,11 +19,7 @@ public class TesteBuilder {
 
         ObraBuilder obraBuilder = new ConcreteObraBuilder();
         ObraDirector obraDirector = new ObraDirector();
-
-        obraDirector.constructBiografia(obraBuilder, "Minha história", autor, 1025);
-
         obraDirector.constructTerror(obraBuilder, "O iluminado", autor, 1025);
-
 
         System.out.println("====================");
         System.out.println(obraBuilder.getResult());
