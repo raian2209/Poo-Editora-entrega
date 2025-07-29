@@ -8,13 +8,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Entities.Avaliador;
-import main.Exceptions.CPFInvalidoException;
 import main.Exceptions.CPFJaExistenteException;
 import main.Exceptions.CamposVaziosException;
-import main.Model.Service.AvaliadorService; // Supondo que você tenha um serviço para Avaliador
-import main.view.HelloApplication;
-import main.Entities.Escritor;
+import main.Model.Service.AvaliadorService;
 import main.Model.Service.EscritorService;
+import main.view.HelloApplication;
 
 public class NovoAvaliadorController {
 

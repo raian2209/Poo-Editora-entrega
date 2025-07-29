@@ -14,10 +14,10 @@ import main.Entities.Obra;
 import main.Exceptions.CamposVaziosException;
 import main.Exceptions.NumeroInvalidoExeption;
 import main.Exceptions.TituloDigitadoJaExistente;
+import main.Model.Builders.*;
 import main.Model.Service.EscritorService;
 import main.Model.Service.ObraService;
 import main.view.HelloApplication;
-import main.Model.Builders.*;
 
 import java.net.URL;
 import java.util.List;
@@ -135,7 +135,7 @@ public class NovaObraController implements Initializable {
     }
 
     @FXML
-     void handleClose(ActionEvent event){
+    void handleClose(ActionEvent event){
         HelloApplication.telaDonoObra();
     }
     private void mostrarAlerta(String titulo, String mensagem) {
