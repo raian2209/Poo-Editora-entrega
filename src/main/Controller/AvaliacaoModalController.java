@@ -74,12 +74,19 @@ public class AvaliacaoModalController implements Initializable {
 
 
         // ex: avaliacaoParaEditar.setParecer(parecerTextArea.getText());
-
+        avaliacaoParaEditar.setJustificativa(parecerTextArea.getText());
 
         AvaliacaoService avaliacaoService = new AvaliacaoService();
         avaliacaoService.atualisar(avaliacaoParaEditar);
 
         System.out.println("Avaliação salva com sucesso para a obra: " + avaliacaoParaEditar.getObraAvaliar().getTitulo());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sucesso");
+        alert.setHeaderText(null);
+        alert.setContentText("Avaliação salva com sucesso!");
+        alert.showAndWait();
+
+        HelloApplication.telaAvaliadorLogin(avaliadorLogado);
 
         // Fecha o modal
         if (stage != null) {

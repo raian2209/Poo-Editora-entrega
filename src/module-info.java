@@ -14,6 +14,8 @@ module POO.Editora.entrega {
     requires org.hibernate.orm.core;
     requires java.desktop;
 
+    requires pdfbox.app;
+
     opens main.Entities to org.hibernate.orm.core, javafx.base;
     opens main.view to javafx.fxml;
     exports main.view;

@@ -53,7 +53,7 @@ public class NovaObraController implements Initializable {
     private void carregarGeneros() {
         // Lista fixa de gêneros para o exemplo
         generoComboBox.setItems(FXCollections.observableArrayList(
-                "Ficção", "Romance", "Fantasia", "Suspense", "Biografia", "Técnico"
+                "Ficção", "Romance", "Fantasia", "Suspense", "Biografia", "Técnico", "Terror"
         ));
     }
 
@@ -106,6 +106,8 @@ public class NovaObraController implements Initializable {
                 case "Biografia":
                     director.constructBiografia(builder, titulo, escritor, ano);
                     break;
+                case "Terror":
+                    director.constructTerror(builder, titulo, escritor, ano);
             }
 
             Obra novaObra = builder.getResult();

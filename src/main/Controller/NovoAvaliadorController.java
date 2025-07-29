@@ -18,6 +18,8 @@ import main.Model.Service.EscritorService;
 
 public class NovoAvaliadorController {
 
+    //OBS: FALTA FAZER ALGUMAS VERIFICAÇÕES
+
     // Campos do formulário de Avaliador
     @FXML private TextField nomeField;
     @FXML private TextField cpfField;
@@ -40,7 +42,7 @@ public class NovoAvaliadorController {
         try {
             // Validação dos campos
             if (nomeField.getText().isEmpty() || cpfField.getText().isEmpty() || enderecoField.getText().isEmpty() || senhaField.getText().isEmpty()) {
-                throw new CPFInvalidoException("Por favor, preencha todos os campos para adicionar o avaliador.");
+                throw new CamposVaziosException("Por favor, preencha todos os campos para adicionar o avaliador.");
             }
 
             //-----------------------------------------------------------------------------------

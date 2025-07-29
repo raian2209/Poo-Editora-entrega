@@ -40,4 +40,10 @@ public class ObraDirector {
                 .buildAno(ano)
                 .buildAutor(autor);
     }
+    public void constructTerror(ObraBuilder builder, String titulo, Escritor autor, int ano) {
+        builder.buildTitulo(titulo)
+                .buildGenero("Terror")
+                .buildAno(ano)
+                .buildAutor(autor);
+    }
 }
