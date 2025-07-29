@@ -5,24 +5,21 @@
 
 * [Visão Geral](#visão-geral)
 * [Features](#features)
-* [Regras de Negócio](#-regras-de-negócio)
-* [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-* [Pré-requisitos](#-pré-requisitos)
-* [Como Rodar o Projeto](#-como-rodar-o-projeto)
-    * [Clonar o Repositório](#clonar-o-repositório)
+* [Regras de Negócio](#regras-do-projeto)
+* [Tecnologias Utilizadas](#tecnologias-usadas)
+* [Pré-requisitos](#pré-requisitos)
+* [Como Rodar o Projeto](#como-rodar-o-projeto)
+    * [Clonar o Repositório](#clone-o-repositório-do-projeto) 
     * [Configurar e Iniciar o Banco de Dados com Docker](#configurar-e-iniciar-o-banco-de-dados-com-docker)
     * [Corrigir a Classe Principal no pom.xml](#corrigir-a-classe-principal-no-pomxml)
-    * [Compilar o Projeto com Maven](#compilar-o-projeto-com-maven)
+    * [Compilar o Projeto com Maven](#compilar-o-projeto-com-maven) 
     * [Executar a Aplicação JavaFX](#executar-a-aplicação-javafx)
-* [Algumas Telas](#-algumas-telas)
-* [Contribuição](#-contribuição)
-* [Licença](#-licença)
 
-# Visão Geral
+### Visão Geral
 Sr. Paulão é um grande empreendedor e resolveu diversificar seu business.Agora, ele vai expandir sua livraria e criar como anexo, uma editora.
 Sr. Paulão não quer misturar os dados e sistemas das duas empresas. Portanto, ele deseja ter um sistema de informação para gerenciar exclusivamente sua editora.
 
-# Features
+### Features
 
 - [X] Cadastrar, alterar ou excluir por
     - [X] Autores (Nome, endereço, cpf)
@@ -56,7 +53,7 @@ Sr. Paulão não quer misturar os dados e sistemas das duas empresas. Portanto, 
 ### Como Rodar o Projeto
 
 
-##### Primeiro, clone o repositório do projeto para o seu ambiente local:
+##### Clone o repositório do projeto
 #
 ```sh
 git clone https://github.com/raian2209/Poo-Editora-entrega
@@ -97,5 +94,3 @@ mvn clean install
 ```sh
 mvn javafx:run
 ```
-
-#### Algumas TelasPOO Edtitora   
