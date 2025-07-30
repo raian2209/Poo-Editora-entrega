@@ -73,7 +73,9 @@
 
                 <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="action-bar">
                     <children>
-                        <TextField prefHeight="40.0" promptText="Buscar autor..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="campoPesquisa" prefHeight="40.0" promptText="Buscar autor..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handlePesquisar" text="Pesquisar" />
+                        <Button onAction="#handleLimparPesquisa" text="Limpar" />
                         <Button mnemonicParsing="false" styleClass="new-button" text="+ Novo Autor" onAction="#adicionarAutor" />
                     </children>
                 </HBox>

@@ -5,9 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.Entities.Avaliador;
 import main.Entities.Escritor;
@@ -29,6 +27,8 @@ public class DonoGerenciarAvaliadoresController implements Initializable {
 
     @FXML
     private TableColumn<Avaliador, String> enderecoColumn;
+
+    @FXML private TextField campoPesquisa;
 
     private ObservableList<Avaliador> avaliadoresObservableList;
 
@@ -90,16 +90,28 @@ public class DonoGerenciarAvaliadoresController implements Initializable {
                 HelloApplication.telaDonoAvaliadorEditar(avaliadorSelecionado);
 
         }else{
-
+            mostrarAlerta("Nenhuma Seleção", "Por favor, selecione um avaliador na tabela para editar.");
         }
     }
 
     @FXML
     void deletarAvaliador(ActionEvent event) {
         Avaliador avaliadorSelecionado = tabelaAvaliadores.getSelectionModel().getSelectedItem();
-        avaliadorService.deletar(avaliadorSelecionado);
-        avaliadoresObservableList.remove(avaliadorSelecionado);
 
+        if (avaliadorSelecionado != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Tem certeza que deseja deletar o avaliador '" + avaliadorSelecionado.getNome() + "'?", ButtonType.YES, ButtonType.NO);
+            alert.setTitle("Confirmação de Exclusão");
+            alert.setHeaderText(null);
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.YES) {
+                    avaliadorService.deletar(avaliadorSelecionado);
+                    avaliadoresObservableList.remove(avaliadorSelecionado);
+                }
+            });
+        } else {
+            // Se nenhum avaliador for selecionado, também mostra um alerta.
+            mostrarAlerta("Nenhuma Seleção", "Por favor, selecione um avaliador na tabela para deletar.");
+        }
     }
 
 
@@ -131,6 +143,35 @@ public class DonoGerenciarAvaliadoresController implements Initializable {
 
         // Popula a tabela
         tabelaAvaliadores.setItems(avaliadoresObservableList);
+    }
+
+    // tratar a ação do botão de pesquisa.
+    @FXML
+    void handlePesquisar(ActionEvent event) {
+        String termoPesquisado = campoPesquisa.getText();
+        if (termoPesquisado == null || termoPesquisado.isBlank()) {
+            carregarDadosNaTabela();
+            return;
+        }
+        List<Avaliador> resultadosDaBusca = avaliadorService.buscarPorNome(termoPesquisado);
+        avaliadoresObservableList = FXCollections.observableArrayList(resultadosDaBusca);
+        tabelaAvaliadores.setItems(avaliadoresObservableList);
+        tabelaAvaliadores.setPlaceholder(new Label("Nenhum avaliador encontrado para a sua pesquisa."));
+    }
+
+    //limpar pesquisa
+    @FXML
+    void handleLimparPesquisa(ActionEvent event) {
+        campoPesquisa.clear();
+        carregarDadosNaTabela();
+    }
+
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Atenção");
+        alert.setHeaderText(titulo);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
 

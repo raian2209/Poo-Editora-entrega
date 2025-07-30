@@ -8,11 +8,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Entities.Escritor;
-import main.Exceptions.CPFJaExistenteException;
-import main.Exceptions.CamposVaziosException;
+import main.Exceptions.*;
+import main.Model.Dao.ContaDAO;
 import main.Model.Service.EscritorService;
 import main.view.HelloApplication;
 import main.Model.Service.AvaliadorService;
+import main.Exceptions.SenhaJaExistenteException;
 
 public class NovoEscritorController {
 
@@ -42,13 +43,25 @@ public class NovoEscritorController {
             // Verificação se já existe avaliador ou escritor com o cpf passado
 
             String cpf = cpfField.getText();
+
+            if (!cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+                throw new CPFInvalidoException("O formato do CPF está inválido. Use o formato XXX.XXX.XXX-XX.");
+            }
+
             EscritorService escritorService = new EscritorService();
             AvaliadorService avaliadorService = new AvaliadorService();
 
             if (escritorService.buscarPorCPF(cpf) != null || avaliadorService.buscarPorCPF(cpf) != null) {
                 throw new CPFJaExistenteException("Já existe um usuário (Avaliador ou Escritor) cadastrado com este CPF.");
             }
-            //-----------------------------------
+            // Verificar se a senha passada já existe
+            String senha1 = senhaField.getText();
+            ContaDAO contaDAO = new ContaDAO();
+
+            if ((contaDAO.buscarPorSenha(senhaField.getText()) != null) || senhaField.getText().equals("123")) {
+                throw new SenhaJaExistenteException("Esta senha já está em uso. Por favor, escolha outra.");
+            }
+            //-------------
 
             //movi cpf e Escritor service mais pra cima, pra verificar se o CPF já foi cadastrado
             // Criação do objeto Escritor
@@ -77,8 +90,12 @@ public class NovoEscritorController {
             }
         }catch(CPFJaExistenteException e){
             mostrarAlerta("CPF já cadastrado!", e.getMessage());
+        } catch (CPFInvalidoException e) {
+            mostrarAlerta("CPF Inválido!", e.getMessage());
         } catch (CamposVaziosException e) {
             mostrarAlerta("Campos vazios!", e.getMessage());
+        }catch(SenhaJaExistenteException e){
+            mostrarAlerta("Senha já existente!", e.getMessage());
         }
     }
 
