@@ -56,7 +56,9 @@
 
                 <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="action-bar">
                     <children>
-                        <TextField prefHeight="40.0" promptText="Buscar obra por título..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="pesquisar" prefHeight="40.0" promptText="Buscar obra por título..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handlePesquisar" text="Pesquisar" />
+                        <Button onAction="#handleLimparPesquisa" text="Limpar" />
                         <Button mnemonicParsing="false" onAction="#adicionarObra" styleClass="new-button" text="+ Nova Obra" />
                     </children>
                 </HBox>

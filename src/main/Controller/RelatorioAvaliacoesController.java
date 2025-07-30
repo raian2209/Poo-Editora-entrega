@@ -63,7 +63,7 @@ public class RelatorioAvaliacoesController implements Initializable {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Salvar Relatório PDF");
-        fileChooser.setInitialFileName("Relatorio_de_Avaliacoes.pdf");
+        fileChooser.setInitialFileName("");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Arquivo PDF", "*.pdf"));
         File file = fileChooser.showSaveDialog(btnBaixarPDF.getScene().getWindow());
 

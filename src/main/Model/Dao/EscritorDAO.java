@@ -108,8 +108,8 @@ public class EscritorDAO extends AbstractDAO implements UserGenericInterDAO<Escr
         em = JPAUtil.getEntityManager();
         try {
             TypedQuery<Escritor> query = em.createQuery(
-                    "SELECT e FROM Escritor e WHERE e.nome = :nome", Escritor.class);
-            query.setParameter("nome", nome);
+                    "SELECT e FROM Escritor e WHERE e.nome LIKE :nome", Escritor.class);
+            query.setParameter("nome", "%" + nome + "%");
             return query.getResultList();
         } finally {
             em.close();

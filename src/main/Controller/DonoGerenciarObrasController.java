@@ -4,9 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.Entities.Avaliador;
 import main.Entities.Obra;
@@ -29,6 +27,7 @@ public class DonoGerenciarObrasController {
 
     private ObservableList<Obra> obrasObservableList;
 
+    @FXML private TextField pesquisar;
     @FXML private Button btnObras;
     @FXML private Button btnAvaliador;
     @FXML private Button btnAutores;
@@ -87,16 +86,31 @@ public class DonoGerenciarObrasController {
             HelloApplication.telaDonoObraEditar(obraSelecionado);
 
         }else{
-
+            mostrarAlerta("Nenhuma Seleção", "Por favor, selecione uma obra na tabela para editar.");
         }
     }
 
     @FXML
     void deletarObra(ActionEvent event) {
         Obra obraSelecionado = tabelaObras.getSelectionModel().getSelectedItem();
-        obraService.deletar(obraSelecionado);
-        obrasObservableList.remove(obraSelecionado);
+
+        //verificação e o alerta de confirmação.
+        if (obraSelecionado != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Tem certeza que deseja deletar a obra '" + obraSelecionado.getTitulo() + "'?", ButtonType.YES, ButtonType.NO);
+            alert.setTitle("Confirmação de Exclusão");
+            alert.setHeaderText(null);
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.YES) {
+                    obraService.deletar(obraSelecionado);
+                    obrasObservableList.remove(obraSelecionado);
+                }
+            });
+        } else {
+            // Se nenhuma obra for selecionada, também mostra um alerta.
+            mostrarAlerta("Nenhuma Seleção", "Por favor, selecione uma obra na tabela para deletar.");
+        }
     }
+
 
     @FXML
     public void initialize() {
@@ -104,6 +118,28 @@ public class DonoGerenciarObrasController {
         carregarDadosNaTabela();
         obraService = new ObraService();
 
+    }
+
+    @FXML
+    void handlePesquisar(ActionEvent event) {
+        String tituloPesquisado = pesquisar.getText();
+        if (tituloPesquisado == null || tituloPesquisado.isBlank()) {
+            carregarDadosNaTabela(); // Se a busca for vazia, mostra todos
+            return;
+        }
+
+        // Busca no serviço apenas por título
+        List<Obra> buscarResultados = obraService.buscarPorTitulo(tituloPesquisado);
+
+        obrasObservableList = FXCollections.observableArrayList(buscarResultados);
+        tabelaObras.setItems(obrasObservableList);
+        tabelaObras.setPlaceholder(new Label("Nenhuma obra encontrada para a sua pesquisa."));
+    }
+
+    @FXML
+    void handleLimparPesquisa(ActionEvent event) {
+        pesquisar.clear();
+        carregarDadosNaTabela();
     }
 
     private void carregarDadosNaTabela() {
@@ -126,5 +162,12 @@ public class DonoGerenciarObrasController {
         escritorColumn.setCellValueFactory(new PropertyValueFactory<>("autor"));
     }
 
-
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Atenção");
+        alert.setHeaderText(titulo);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
 }
+//--------------------------------CHECKPOINT
